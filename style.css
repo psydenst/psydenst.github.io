@@ -159,45 +159,6 @@ nav ul li a:hover::after {
     font-size: 18px;
     color: #fff;
 }
-/*
-.tab-links
-{
-    margin-right: 50px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-}
-
-.tab-links::after
-{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #767575;
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    transition: 0.5s;
-}
-
-.tab-links.active-link::after
-{
-    width: 50%;
-}
-
-.tab-contents ul li
-{
-    list-style: none;
-    margin: 10px 0;
-}
-
-.tab-contents ul li span
-{
-    color: #fff;
-    font-size: 14px;
-}
-*/
 
 .skills {
     display: flex;
@@ -252,6 +213,11 @@ span#description
     padding: 50px 0;
 }
 
+#portfolio .sub-title
+{
+    margin-top: 0;
+}
+
 .work-list
 {
     display: grid;
@@ -284,17 +250,54 @@ span#description
     border-radius: 10px;
     display: block;
 }
+
+/*-------------  Contact me -------------*/
 /*
-.layer
-{
+#contact
+  
+  form input,
+  form textarea 
+  {
     width: 100%;
-    height: 0;
-    background: linear-gradient(rgba(0,0,0,0.6), #ff004f);
-    font-size: 18px;
-    line-height: 60px;
-    background: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  button 
+  {
+    background-color: #f5ad42;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #contact-status 
+  {
     text-align: center;
-} */
+    margin-top: 20px;
+  } */
+
+/*-------------  Contact me -------------*/
+
+.contact-left
+{
+    position: relative;
+    left: 50px;
+    transform: translateX(-78%);
+    color: white;
+    flex-basis: auto;
+    margin-left: 55px;
+}
+
+.contact-left p
+{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+.contact-right
+{
+
+}
+
