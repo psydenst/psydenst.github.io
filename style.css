@@ -134,6 +134,42 @@ nav ul li a:hover::after {
     margin-left: 0px; /* Adjust the margin as per your requirements */
 }
 
+@media (max-width: 768px)
+{
+    #about
+    {
+      padding: 80px 0;
+      color: #767575;
+    }
+
+    .row {
+        flex-direction: column;
+      }
+    
+      .about-col-1 
+      {
+        position: relative;
+        left: 0;
+        flex-basis: 100%; /* Change the width to full width on small screens */
+        text-align: center; /* Center the image on small screens */
+        margin-bottom: 20px; /* Add margin to create space between the image and text on small screens */
+      }
+
+      .about-col-1 img
+      {
+        position: relative;
+        max-width: 300px; /* Limit the maximum width of the image */
+        height: auto;
+        border-radius: 15px;
+      }
+    
+      .about-col-2 
+      {
+
+        flex-basis: 100%; /* Change the width to full width on small screens */
+      }
+}
+
 .sub-title
 {
     font-size: 60px;
@@ -253,38 +289,24 @@ span#description
     display: block;
 }
 
-/*-------------  Contact me -------------*/
-/*
-#contact
-  
-  form input,
-  form textarea 
-  {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  
-  button 
-  {
-    background-color: #f5ad42;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  #contact-status 
-  {
-    text-align: center;
-    margin-top: 20px;
-  } */
 
 /*-------------  Contact me -------------*/
 
 #contact
 {
     margin-top: 80px;
+}
+
+#contact .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #contact .row 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .btn {
@@ -303,11 +325,9 @@ span#description
 .contact-left
 {
     position: relative;
-    left: 50px;
-    transform: translateX(-78%);
+    transform: translateX(-28%);
     color: white;
-    flex-basis: auto;
-    margin-left: 55px;
+    flex-basis: 50%;
 }
 
 .contact-left p
@@ -319,10 +339,12 @@ span#description
 .contact-right
 {
     position: relative;
-    top: 50%;
-    transform: translateY(-77%);
-    left: 25%;
-
+    top: 0;
+    flex-basis: 50%;
+    transform: translateY(-78%);
+    left: 40%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .social-icons
@@ -356,7 +378,24 @@ span#description
 
 .contact-right form
 {
+    width: 130%;
+}
+
+.contact-form-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.contact-form-container form
+{
     width: 100%;
+}
+  
+.contact-form-container .btn3
+{
+    margin-top: 20px;
 }
 
 form input, form textarea
@@ -397,3 +436,30 @@ form input, form textarea
     font-weight: 300;
     margin-top: 20px;
 }
+
+/* ----------------------- CSS FOR MOBILE --------------- */
+
+@media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  
+    .contact-left,
+    .contact-right {
+      flex-basis: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    .contact-right {
+      margin-top: 30px; /* Add margin for spacing on mobile layout */
+      transform: none; /* Reset transform for mobile layout */
+      left: 0; /* Reset left position for mobile layout */
+    }
+  
+    /* Reset form and form text positioning for mobile layout */
+    .contact-right form {
+      width: 100%;
+      margin-top: 20px; /* Add margin for spacing below the contact information */
+    }
+  }
