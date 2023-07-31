@@ -5,12 +5,14 @@
     box-sizing: border-box;
 }
 
-body {
+body
+{
     background: #f5ad42;
     color: #f1ab43;
 }
 
-#header {
+#header
+{
     width: 100%;
     height: 100vh;
     background-image: url(background.png);
@@ -21,7 +23,8 @@ body {
 }
 
 
-.logo {
+.logo
+{
     position: absolute;
     top: 2%;
     left: 1%;
@@ -29,7 +32,8 @@ body {
     height: auto; /* Maintain the aspect ratio of the image */
 }
 
-.container {
+.container
+{
     padding: 10px 10%;
 }
 
@@ -134,7 +138,7 @@ nav ul li a:hover::after {
     margin-left: 0px; /* Adjust the margin as per your requirements */
 }
 
-@media (max-width: 768px)
+@media (max-width: 950px)
 {
     #about
     {
@@ -439,27 +443,82 @@ form input, form textarea
 
 /* ----------------------- CSS FOR MOBILE --------------- */
 
-@media (max-width: 768px) {
-    .row {
+nav .fa-solid
+{
+    display: none;
+}
+
+@media (max-width: 950px) 
+{
+   .logo
+   {
+    display: none;
+   }
+    .row
+    {
       flex-direction: column;
     }
   
     .contact-left,
-    .contact-right {
+    .contact-right
+    {
       flex-basis: 100%;
       margin-left: 0;
       margin-right: 0;
     }
   
-    .contact-right {
+    .contact-right
+    {
       margin-top: 30px; /* Add margin for spacing on mobile layout */
       transform: none; /* Reset transform for mobile layout */
       left: 0; /* Reset left position for mobile layout */
     }
   
     /* Reset form and form text positioning for mobile layout */
-    .contact-right form {
+    .contact-right form
+    {
       width: 100%;
       margin-top: 20px; /* Add margin for spacing below the contact information */
+    }
+
+    nav .fa-solid
+    {
+        display: block;
+        font-size: 25px;
+    }
+
+    #sidemenu
+    {
+        background: #c6c3c3;
+        position: fixed;
+        top: 0;
+        right: 0;
+        display: block;
+        text-align: left;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+    };
+
+    #sidemenu ul
+    {
+        margin-top: 20px;
+    }
+
+    #sidemenu li
+    {
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
+    nav .fa-solid
+    {
+        position : absolute;
+        top: 25px;
+        right: 25px;
+        cursor: pointer;
+        color: white;
     }
   }

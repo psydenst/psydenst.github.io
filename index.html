@@ -15,13 +15,15 @@
         <div class="container">
             <nav>
                 <img src="logo.png" alt="logo" class="logo">
-                <ul>
+                <ul id="sidemenu">
                     <li><a href="#header"><b>HOME</b></a></li>
                     <li><a href="#about"><b>ABOUT</b></a></li>
                     <li><a href="#portfolio"><b>PORTFOLIO</b></a></li>
                     <li><a href="#contact"><b>CONTACT</b></a></li>
+                    <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
                 </ul>
-            </nav>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>            </nav>
+
             <div class="header-text">
                 <h1>Hey, I'm <span id="name">Psy</span>,<br> a
                     <span id="fs">Fullstack Developer</span><br>
@@ -182,4 +184,17 @@
 </body>
 </html>
 
+
+<script>
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu()
+    {
+            sidemenu.style.right = "0";
+    }
+    function closemenu()
+    {
+            sidemenu.style.right = "-200px";
+    }
+</script>
 
