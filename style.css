@@ -22,7 +22,6 @@ body
     background-color: #f5ad42; /* Adjusted background color to orange */
 }
 
-
 .logo
 {
     position: absolute;
@@ -454,6 +453,12 @@ nav .fa-solid
    .logo
    {
     display: none;
+   }
+
+   .container
+   {
+    align-items: center;
+    flex-direction: column;
    }
     .row
     {
