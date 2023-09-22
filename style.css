@@ -473,9 +473,11 @@ nav .fa-solid
     .contact-left,
     .contact-right
     {
+      transform: translateX(-6.5%);
       flex-basis: 100%;
       margin-left: 0;
       margin-right: 0;
+      align-items: center;
     }
   
     .contact-right
