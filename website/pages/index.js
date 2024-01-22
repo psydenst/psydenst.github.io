@@ -1,0 +1,244 @@
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+// import Link from 'next/link';
+// import Script from 'next/script';
+import Navbar from '../components/navbar.js';
+
+export default function Home() {
+
+    return (    
+        <div className={styles.body}>
+        <Head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel='shorcut icon' href='/favicon.ico' sizes='any'/>
+        </Head>
+        <Navbar/>
+        </div>
+    )    
+
+}
+
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>psydenst</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f989b94006.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+
+
+// HEADER
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="logo.png" alt="logo" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header"><b>HOME</b></a></li>
+                    <li><a href="#about"><b>ABOUT</b></a></li>
+                    <li><a href="#portfolio"><b>PORTFOLIO</b></a></li>
+                    <li><a href="#contact"><b>CONTACT</b></a></li>
+                    <i class="fa-solid fa-circle-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>            </nav>
+
+            <div class="header-text">
+                <h1>Hey, I'm <span id="name">Psy</span>,<br> a
+                    <span id="fs">Fullstack Developer</span><br>
+                     from Rio de Janeiro</h1>
+            </div>
+        </div>
+    </div>
+
+// ABOUT
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/profileBW.JPG">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About me</h1>
+                    <p class="paragraph">
+                        Currently graduating from <a href="https://42.fr/42-cest-quoi/le-programme-42-explique/" class="link-ecole42">École 42</a>,
+                        the <a href="https://www.wuri.world/2022-global-top-100" class="link-innovative">6th most innovative university 
+                        in the world</a>, I'm a aspiring FullStack 
+                        Developer with experience in mobile 
+                        and web development. By seamlessly 
+                        integrating front-end and back-end 
+                        technologies, I create dynamic and 
+                        user-friendly applications. With a 
+                        commitment to staying up-to-date 
+                        with industry trends, I am poised 
+                        to deliver innovative and impactful 
+                        solutions to your projects.
+                    </p>
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link"><br></p>
+                    </div>
+                    <div class="tab-contents">
+                        <div class="skills">
+                            <div class="skills-column">
+                                <h2>Back-end Development</h2>
+                                <div class="skill">
+                                    <img src="images/c++.png" alt="C++">
+                                    <span id="description">C++</span>
+                                </div>
+                                <div class="skill">
+                                    <img src="images/c.png" alt="C">
+                                    <span id="description">C</span>
+                                </div>
+                                <div class="skill">
+                                    <img src="images/bash.png" alt="Bash">
+                                    <span id="description">Bash</span>
+                                </div>
+                            </div>
+                            <div class="skills-column">
+                                <h2>Front-end Development</h2>
+                                <div class="skill">
+                                    <img src="images/html.png" alt="HTML">
+                                    <span id="description">HTML</span>
+                                </div>
+                                <div class="skill">
+                                    <img src="images/css.png" alt="CSS">
+                                    <span id="description">CSS</span>
+                                </div>
+                                <div class="skill">
+                                    <img src="images/js.png" alt="JavaScript" class="logo-image darken">
+                                    <span id="description">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+    </div>
+    <br><br>
+
+// PORTFO
+
+    <div id="portfolio">
+        <h1 class="sub-title">Portfolio</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="images/garrafa.svg">
+                <br>
+                <div class="layer">
+                    <h3>Garrafa no Mar ("Bottle in the Sea") </h3>
+                    <p>
+                        A tech-for-good app that connects people in need of financial assistance with compassionate angels, fostering support and making a positive impact. The app aims to help individuals who are struggling to pay their basic bills, such as water or gas bills.  I'm currently part of the back-end team, diligently working on the development of the app's new version.
+                    <a href="https://projetogarrafanomar.glideapp.io"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <video controls>
+                    <source src="images/minishell.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br>
+                <div class="layer">
+                    <h3>Minishell</h3>
+                    <p>
+                        Minishell is a simple shell project that lets you navigate and execute commands effortlessly. With features like history tracking, environment variable expansion, and basic built-in commands, it provides a user-friendly command-line experience. 
+                         This project is a detailed mimic of bash, written in the lowest possible level, the C language.
+                    </p>
+                    <a href="https://github.com/psydenst/minishell"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="work">
+                <video controls>
+                    <source src="images/cub3d_matrix.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br>
+                <div class="layer">
+                    <h3>Cub3D</h3>
+                    <p>
+                        Raycasting is a technique used in real-time rendering to simulate light rays and create 3D environments. This project implements raycasting to enable a realistic first-person perspective in interactive environments. By calculating ray positions, directions, and distances, the 3D scene can be accurately rendered, allowing users to navigate and interact with the virtual world.
+                    </p>
+                    <a href="https://github.com/psydenst/Cub3d"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+
+// CONTACT
+        <div id="contact">
+        <div class="container">
+            <div class="row">
+                    <div class="contact-left">
+                        <h1 class="sub-title">Contact Me</h1>
+                        <br>
+                        <p> <i class="fa-solid fa-paper-plane"></i>      psydenst.dev@gmail.com</p>
+                        <br>
+                        <p> <i class="fa-solid fa-phone"></i>      +55 (21) 985849828</p>
+                        <br>
+                        <div class="social-icons">
+                            <p>   </p><a href="https://www.linkedin.com/in/pedrosydenstricker/"> <i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://github.com/psydenst"> <i class="fa-brands fa-github"></i></a>
+                            <a href="https://www.instagram.com/pedrosydenstricker/"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                        <a href="images/CV.pdf" download class="btn btn2">Download CV</a>
+                    </div>
+                    <div class="contact-right">
+                        <div class="contact-form-container">
+                            <form name="submit-to-google-sheet">
+                                <input type="text" name="Name" placeholder="Your Name" required>
+                                <input type="email" name="email" placeholder="Your Email" required>
+                                <textarea name="Message" rows="6" placeholder="Your message"></textarea>
+                                <button class="btn3" type="submit">Submit</button>
+                            </form>
+							<span id="msg"></span>
+                        </div>
+                    </div>
+            </div>   
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright by Pedro Sydenstricker. 2023.</p>
+    </div>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxPvc1uOQWphlFII0zbj9nnUJ6eDZQKupcLcD-3F6LjTueQzqhtGPTcFun4CNzvEuFS3w/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg");
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+	.then(response => {
+		msg.innerHTML = "Message sent successfully!"
+		setTimeout(function()
+        {
+			msg.innerHTML = ""
+		}, 5000)
+		form.reset()
+	})
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+</body>
+</html>
+
+
+<script>
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu()
+    {
+            sidemenu.style.right = "0";
+    }
+    function closemenu()
+    {
+            sidemenu.style.right = "-200px";
+    }
+</script>
+
+*/
