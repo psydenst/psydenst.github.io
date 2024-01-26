@@ -1,0 +1,43 @@
+.container
+{
+    background: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo
+{
+    background: none !important;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+.sidemenu
+{
+    background: none;
+    display: flex;
+    list-style-type: none;
+}
+
+.sidemenu li
+{
+    background: none;
+    display: flex;
+    list-style-type: none;
+
+}
+
+
+.sidemenu a
+{
+    background: none;
+    margin-right: 3vh;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidemenu b
+{
+    background: none;
+}

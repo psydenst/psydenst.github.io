@@ -9,11 +9,23 @@ export default function Home() {
     return (    
         <div className={styles.body}>
         <Head>
-          <meta charSet="utf-8" />
+          <meta charSet="utf-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel='shorcut icon' href='/favicon.ico' sizes='any'/>
         </Head>
-        <Navbar/>
+        <div className={styles.home}>
+        <a href="#home"></a>
+            <h1>
+                Hey, I'm <span className={styles.psy}>Psy</span><br/>
+                a <span className={styles.span}>Fullstack Developer
+                </span><br/>
+                from Rio de Janeiro
+            </h1>
+        </div>
+        
+    
+
+
         </div>
     )    
 

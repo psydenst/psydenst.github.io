@@ -1,0 +1,13 @@
+/* components/Layout.module.css */
+
+.layout {
+    background: url('../public/background.png') center/cover; /* Substitua pelo caminho da sua imagem de plano de fundo */
+    width: 100%;
+    height: 100vh;
+    background-size: auto 100%; /* Adjusted background size */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    background-position: top right; /* Adjusted background position */ 
+    background-color: #f5ad42;
+  }
+  
+  
