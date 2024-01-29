@@ -1,13 +1,15 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 // import Link from 'next/link';
 // import Script from 'next/script';
+import arrow from '../public/arrow.png';
 import Navbar from '../components/navbar.js';
 
 export default function Home() {
 
     return (    
-        <div className={styles.body}>
+        <div className={styles.container}>
         <Head>
           <meta charSet="utf-8"/>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,16 +18,17 @@ export default function Home() {
         <div className={styles.home}>
         <a href="#home"></a>
             <h1>
-                Hey, I'm <span className={styles.psy}>Psy</span><br/>
+                Hey, I'm <span className={styles.psy}>Psy</span>,<br/>
                 a <span className={styles.span}>Fullstack Developer
                 </span><br/>
                 from Rio de Janeiro
             </h1>
         </div>
-        
-    
-
-
+        <div className={styles.end_cont}>
+            <div className={`${styles.arrow} ${styles.bounce} ${styles.fade}`}>
+                <Image src={arrow} alt="arrow" width={30} quality={100} unoptimized />
+            </div>
+        </div>
         </div>
     )    
 

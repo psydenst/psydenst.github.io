@@ -10,8 +10,8 @@ export default function Navbar() {
             <div className={styles.container}>
             <Image className={styles.logo} src="/logo.png"
                     alt="logo"
-                    width={100}
-                    height={24}
+                    width={110}
+                    height={30}
             />
             <ul className={styles.sidemenu}>
                     <li><a href="#header"><b>HOME</b></a></li>

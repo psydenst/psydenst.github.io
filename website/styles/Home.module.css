@@ -1,14 +1,19 @@
+.container 
+{
+    height: 60vh;
+}
+
 .home h1 {
-    margin-top: 30vh;
+    margin-top: 15vh;
     justify-content: flex-start;  
     margin-left: 7vh;
-    color: white
+    color: white;
+    font-size: 7vh;
 }
 
 .span {
     color: #91f5f0;
     font-weight: bold;
-    word-break: break-all;
 }
 
 .psy
@@ -16,3 +21,32 @@
     text-decoration: underline;
     text-decoration-color: #91f5f0;
 }
+
+.end_container
+{
+    height: fill-available;
+}
+
+.arrow
+{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+

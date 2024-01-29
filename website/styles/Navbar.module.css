@@ -1,6 +1,7 @@
 .container
 {
-    background: none;
+    height: 10vh;
+    background: none !important;
     display: flex;
     justify-content: space-between;
 }
@@ -8,8 +9,9 @@
 .logo
 {
     background: none !important;
-    margin-top: 3px;
-    margin-left: 3px;
+    margin-top: 1vh;
+    margin-left: 2vh;
+    filter: brightness(1.65);
 }
 
 .sidemenu
@@ -24,7 +26,8 @@
     background: none;
     display: flex;
     list-style-type: none;
-
+    margin-top: 1vh;
+    margin-left: 1vh;
 }
 
 
@@ -35,9 +38,23 @@
     color: #fff;
     text-decoration: none;
     font-size: 18px;
+    padding-bottom: 5px;
 }
+
 
 .sidemenu b
 {
-    background: none;
+    position: relative;
 }
+  
+
+.sidemenu b:hover
+{
+    border-bottom: 0.35vh solid #a8a299; /* Ajusta a altura da borda ao passar o mouse */
+    padding-bottom: 0; /* Remove o espaço abaixo do texto ao passar o mouse */
+    transition: border-bottom 0.3s ease, padding-bottom 0.3s ease; /* Transição suave */
+}
+
+
+
+
