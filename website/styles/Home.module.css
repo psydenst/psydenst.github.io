@@ -8,7 +8,7 @@
     justify-content: flex-start;  
     margin-left: 7vh;
     color: white;
-    font-size: 7vh;
+    font-size: 6.8vh;
 }
 
 .span {
@@ -24,7 +24,7 @@
 
 .end_container
 {
-    height: fill-available;
+    height: stretch;
 }
 
 .arrow
@@ -35,6 +35,22 @@
     justify-content: flex-end;
     align-items: center;
     animation: bounce 2s infinite;
+}
+
+.arrow img {
+  animation: fade-out 10s forwards;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+
+.fade
+{
+  opacity: 1;
+  transition: 1s all ease-out;
 }
 
 @keyframes bounce {

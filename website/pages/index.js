@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css';
 // import Link from 'next/link';
 // import Script from 'next/script';
 import arrow from '../public/arrow.png';
-import Navbar from '../components/navbar.js';
 
 export default function Home() {
 
