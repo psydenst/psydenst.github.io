@@ -1,0 +1,31 @@
+/* About.module.css */
+
+.about {
+  color: white;
+}
+
+.container {
+  margin-bottom: 100vh;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Distribui os itens com espaço entre eles */
+  font-size: 5vh;
+  padding: 10px; /* Adiciona um pouco de espaçamento interno */
+}
+
+.col_left, .col_right {
+  flex: 1; /* Faz com que as colunas ocupem espaço igual */
+}
+
+.col_left {
+}
+
+.col_right {
+}
+
+.skills {
+}
+
+
