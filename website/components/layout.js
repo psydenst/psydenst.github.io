@@ -1,9 +1,8 @@
 // components/Layout.js
 
 import React from 'react';
-import Navbar from './navbar';
 import styles from '../styles/Layout.module.css';
-
+import Navbar from './navbar.js'
 const Layout = ({ children , is_home}) => {
   return (
     <div className={styles.layout} style={is_home ? { 
@@ -12,8 +11,9 @@ const Layout = ({ children , is_home}) => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'top right'
       } : {}}>
-      <Navbar/>
+     
       <div className={styles.content}>{children}</div>
+      
     </div>
   );
 };

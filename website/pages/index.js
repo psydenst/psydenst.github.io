@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 // import Link from 'next/link';
 // import Script from 'next/script';
 import arrow from '../public/arrow.png';
+import Navbar from '../components/navbar'
 
 export default function Home() {
 
@@ -14,6 +15,7 @@ export default function Home() {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel='shorcut icon' href='/favicon.ico' sizes='any'/>
         </Head>
+        <Navbar/>
         <div className={styles.home}>
         <a href="#home"></a>
             <h1>

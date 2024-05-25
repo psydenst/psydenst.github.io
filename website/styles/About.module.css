@@ -2,39 +2,75 @@
 
 .about {
   color: white;
+  width: 100vh;
+  height: 100vh;
 }
 
-.container {
-  margin-bottom: 100vh;
+.about_me {
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
 }
+
+/*
+.text 
+{
+  height: 30vh;
+}
+*/
 
 .row {
   display: flex;
-  justify-content: space-between; /* Distribui os itens com espaço entre eles */
+  justify-content: space-around; /* Distribui os itens com espaço entre eles */
   font-size: 5vh;
-  padding: 10px; /* Adiciona um pouco de espaçamento interno */
-}
-
-.col_left, .col_right {
-  flex: 1; /* Faz com que as colunas ocupem espaço igual */
+  height: 85vh;
+  width: 100vh;
 }
 
 .col_left {
+  display: flex;
+  min-width: 50vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  align-items: center;
+  margin-bottom: 30vh;
+}
+
+.top {
+  min-height: 50vh;
+}
+.bottom {
+  flex-direction: row;
 }
 
 .col_right {
-  display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  display: flex;
 }
 
-.co
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%; /* Ensures the columns take full width */
+}
+
+.column_skills {
+  max-width: 45%; /* Each column should take almost half of the row */
+  display: flex;
+  flex-direction: column;
+  margin: 0 2.5%; /* Adds space between the columns */
+  justify-content: flex-start;
+}
 
 .skills {
   display: flex;
+  justify-content: space-between;
   justify-content: center;
-  
 }
-
-
-
 

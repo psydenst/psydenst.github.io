@@ -1,17 +1,29 @@
 import styles from '../../styles/About.module.css'
 import Image from 'next/image'
+
 export default function About() {
   return (
     <div className={styles.about}>
       <div className={styles.container}>
-        <div className={styles.about_me}></div>
+        <div className={styles.about_me}>
+        </div>
+
         <div className={styles.row}>
            <div className={styles.col_left}>
-              <h2>About me</h2>
+                <Image
+                  src="/profileBW.JPG"
+                  width={350}
+                  height={350}
+                  alt="C++"
+                  className={styles.img}></Image>
             </div>
             <div className={styles.col_right}>
+              <div className={styles.top}>
+                <h1>hello</h1>
+              </div>
+              <div className={styles.bottom}>
               <div className={styles.column_skills}>
-              <h2>Back-end Development</h2>
+              <h3>Back-end Development</h3>
               <div className={styles.skills}>
                 <Image
                   src="/c++.png"
@@ -38,7 +50,7 @@ export default function About() {
               </div>
               </div>
               <div className={styles.column_skills}>
-                <h2>Front-end Development</h2>
+                <h3>Front-end Development</h3>
                   <div className={styles.skills}>
                     <Image
                     src="/html.png"
@@ -79,7 +91,8 @@ export default function About() {
                     alt="Next.js"></Image>
                     <h6>Next.js</h6>
                   </div>
-                </div>
+                </div>  
+              </div>
             </div>
         </div>
       </div>
