@@ -24,33 +24,34 @@
   display: flex;
   justify-content: space-around; /* Distribui os itens com espaço entre eles */
   font-size: 5vh;
-  height: 85vh;
   width: 100vh;
 }
 
 .col_left {
   display: flex;
+  flex-direction: row;
   min-width: 50vh;
-  align-items: center;
   justify-content: center;
 }
 
+
 .img {
-  align-items: center;
-  margin-bottom: 30vh;
+  border-radius: 3vh;
+  margin-right: 10vh;
+  margin-left: 10vh;
 }
 
-.top {
-  min-height: 50vh;
-}
-.bottom {
-  flex-direction: row;
+.top h1 {
+  font-family: monospace;
+  font-size: 6vh;
 }
 
 .col_right {
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
-  display: flex;
+  margin-left: 10vh;
+
 }
 
 .bottom {
@@ -65,12 +66,46 @@
   display: flex;
   flex-direction: column;
   margin: 0 2.5%; /* Adds space between the columns */
-  justify-content: flex-start;
+}
+
+.column_skills h3 {
+  justify-content: center;
+  font-size: 3.5vh;
+}
+
+.column_skills_right {
+  max-width: 45%; /* Each column should take almost half of the row */
+  display: flex;
+  flex-direction: column;
+  margin: 0 2.5%; /* Adds space between the columns */
+  margin-left: 20vh;
+}
+
+.column_skills_right h3 {
+  justify-content: center;
+  font-size: 3.5vh;
 }
 
 .skills {
   display: flex;
-  justify-content: space-between;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 2vh;
 }
+
+.skills h6 {
+  margin-left: 6vh;
+  font-size: 2vh;
+  
+}
+
+.paragraph {
+  font-size: 1.6vh;
+  font-family: monospace;
+  justify-content: space-between;
+}
+
+
+
+
 
