@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import NvimBar from '../components/NvimBar.astro';
+import { sectionLabel } from '../data/site';
+import { formatDate, getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { postSlug, readingStats, type Post } from '../lib';
+interface Props { post: Post }
+const { post } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { Content, headings } = await render(post);
+const { words, minutes } = readingStats(post.body);
+const file = `~/blog/${post.data.section}/${postSlug(post.id)}.md`;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+<Base title={post.data.title} description={post.data.description} theme="nvim">
+  <div class="wrap nv-page nv-post">
+    <NvimBar kind="tab" path={file} />
+    <article>
+      <header class="post-head">
+        <p class="eyebrow mono">
+          <a href={localizePath(`/blog/${post.data.section}`, lang)}>{sectionLabel(post.data.section, lang)}</a>
+          <span class="dim"> / </span><span class="dim">{postSlug(post.id)}.md</span>
+        </p>
+        <h1 class="nv-title">{post.data.title}<span class="cursor" aria-hidden="true"></span></h1>
+        <p class="lede muted">{post.data.description}</p>
+        <div class="meta mono">
+          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, lang)}</time>
+          <span>{minutes} {t('blog.readingTime')}</span>
+          <span>{words} {t('blog.words')}</span>
+          {post.data.lang !== lang && <span class={`badge ${post.data.lang}`}>{post.data.lang}</span>}
+        </div>
+        {post.data.tags.length > 0 && (
+          <ul class="tags mono" aria-label="Tags">{post.data.tags.map((tag) => <li>#{tag}</li>)}</ul>
+        )}
+      </header>
+
+      <div class="post-grid">
+        {toc.length > 1 && (
+          <aside class="toc mono" aria-label="Outline">
+            <p class="dim">-- outline --</p>
+            <ol>
+              {toc.map((h) => <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>)}
+            </ol>
+          </aside>
+        )}
+        <div class="prose nv-prose" id="post-body"><Content /></div>
+      </div>
+    </article>
+    <NvimBar kind="status" path={file} lang={lang} scroll />
+  </div>
+</Base>

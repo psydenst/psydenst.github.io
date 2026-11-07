@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { publications } from '../data/publications';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { getPosts } from '../lib';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const latest = (await getPosts()).slice(0, 5);
+---
+<Base>
+  <section class="hero">
+    <div class="hero-art" aria-hidden="true"></div>
+    <div class="wrap hero-copy">
+      <p class="eyebrow">{t('home.eyebrow')}</p>
+      <h1>psydenst<span class="dot">.</span></h1>
+      <p class="lede">{t('home.lede')}</p>
+      <p class="muted">{t('home.topics')}</p>
+      <div class="actions">
+        <a class="btn primary" href={localizePath('/blog', lang)}>{t('home.cta.blog')}</a>
+        <a class="btn" href={localizePath('/publications', lang)}>{t('home.cta.pubs')}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap cols home-cols">
+    <section>
+      <h2>{t('home.latest')}</h2><hr class="rule" />
+      {latest.length === 0 ? (
+        <p class="empty">{t('home.latest.empty')} <a href={localizePath('/blog', lang)}>{t('home.latest.link')}</a>.</p>
+      ) : (
+        <PostList posts={latest} lang={lang} />
+      )}
+    </section>
+    <section>
+      <h2>{t('home.onNym')}</h2><hr class="rule purple" />
+      <ul class="card-grid single">
+        {publications.slice(0, 3).map((pub) => <PublicationCard pub={pub} lang={lang} />)}
+      </ul>
+      <p class="more"><a href={localizePath('/publications', lang)}>{t('home.allPubs')} →</a></p>
+    </section>
+  </div>
+</Base>

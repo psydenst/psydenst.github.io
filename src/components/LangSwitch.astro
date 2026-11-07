@@ -1,0 +1,20 @@
+---
+import { localizePath, useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+interface Props { lang: Lang; route: string }
+const { lang, route } = Astro.props;
+const t = useTranslations(lang);
+const options: Lang[] = ['en', 'pt'];
+---
+<nav class="lang-switch" aria-label={t('lang.label')}>
+  {options.map((l) => (
+    <a
+      href={localizePath(route, l)}
+      hreflang={l === 'pt' ? 'pt-BR' : 'en'}
+      lang={l === 'pt' ? 'pt-BR' : 'en'}
+      data-lang={l}
+      aria-current={l === lang ? 'true' : undefined}
+      title={t(l === 'en' ? 'lang.en' : 'lang.pt')}
+    >{l.toUpperCase()}</a>
+  ))}
+</nav>

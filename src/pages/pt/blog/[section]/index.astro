@@ -1,0 +1,6 @@
+---
+import BlogSection from '../../../../views/BlogSection.astro';
+import { sectionPaths } from '../../../../lib';
+export const getStaticPaths = sectionPaths;
+---
+<BlogSection section={Astro.props.section} />

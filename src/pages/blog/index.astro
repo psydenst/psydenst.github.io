@@ -1,19 +1,4 @@
 ---
-import Base from '../../layouts/Base.astro';
-import PostList from '../../components/PostList.astro';
-import SectionChips from '../../components/SectionChips.astro';
-import { sections } from '../../data/site';
-import { getPosts } from '../../lib';
-const posts = await getPosts();
+import BlogIndex from '../../views/BlogIndex.astro';
 ---
-<Base title="Blog" description="Technical studies, fichamentos, comments, and articles by psydenst.">
-  <div class="wrap">
-    <header class="page-head"><p class="eyebrow">Blog</p><h1>Blog</h1><hr class="rule" /></header>
-    <SectionChips />
-    <PostList posts={posts} />
-    <h2>Sections</h2>
-    <ul class="list">
-      {sections.map((s) => <li><h3><a href={`/blog/${s.slug}`}>{s.label}</a></h3><p class="muted">{s.blurb}</p></li>)}
-    </ul>
-  </div>
-</Base>
+<BlogIndex />

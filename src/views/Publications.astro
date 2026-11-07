@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { publications } from '../data/publications';
+import { site } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<Base title={t('pubs.title')} description={t('pubs.description')}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">{t('pubs.title')}</p><h1>{t('pubs.heading')}</h1><hr class="rule purple" />
+      <p class="muted">
+        {t('pubs.intro.before')}<a href={site.nymAuthor[lang]} target="_blank" rel="noopener noreferrer">{t('pubs.intro.link')}</a>{t('pubs.intro.after')}
+      </p>
+    </header>
+    <ul class="card-grid">{publications.map((pub) => <PublicationCard pub={pub} lang={lang} />)}</ul>
+  </div>
+</Base>

@@ -1,4 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import { ui } from '../i18n/ui';
 ---
-<Base title="Not found"><div class="wrap"><header class="page-head"><h1>Not found</h1><hr class="rule" /><p><a href="/">Back home</a></p></header></div></Base>
+<Base title={ui.en['notfound.title']}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow mono">E404</p>
+      <h1>{ui.en['notfound.title']} <span class="muted">/ {ui.pt['notfound.title']}</span></h1>
+      <hr class="rule" />
+      <p><a href="/">{ui.en['notfound.back']}</a> · <a href="/pt/">{ui.pt['notfound.back']}</a></p>
+    </header>
+  </div>
+</Base>

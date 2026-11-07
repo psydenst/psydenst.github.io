@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import SectionChips from '../components/SectionChips.astro';
+import NvimBar from '../components/NvimBar.astro';
+import type { Section } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getPosts } from '../lib';
+interface Props { section: Section }
+const { section } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const posts = (await getPosts()).filter((p) => p.data.section === section.slug);
+---
+<Base title={section.label[lang]} description={`${section.label[lang]} ${t('blog.by')} ${section.blurb[lang]}`} theme="nvim">
+  <div class="wrap nv-page">
+    <NvimBar kind="tab" path={`~/blog/${section.slug}/`} />
+    <header class="page-head">
+      <p class="eyebrow mono">:ls {section.slug}</p>
+      <h1 class="nv-title">{section.label[lang]}<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="muted">{section.blurb[lang]}</p>
+    </header>
+    <SectionChips current={section.slug} lang={lang} />
+    <PostList posts={posts} lang={lang} showSection={false} />
+    <NvimBar kind="status" path={`~/blog/${section.slug}/`} right={`${posts.length} ${posts.length === 1 ? 'buf' : 'bufs'}`} lang={lang} />
+  </div>
+</Base>

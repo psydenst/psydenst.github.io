@@ -1,0 +1,52 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+interface Props {
+  kind: 'tab' | 'status';
+  path: string;
+  right?: string;
+  lang?: Lang;
+  /** Show live scroll position (Top / 42% / Bot) in the statusline. */
+  scroll?: boolean;
+}
+const { kind, path, right, lang = 'en', scroll = false } = Astro.props;
+const t = useTranslations(lang);
+const file = path.split('/').filter(Boolean).pop() ?? path;
+---
+{kind === 'tab' ? (
+  <div class="nv-tabline mono" aria-hidden="true">
+    <span class="nv-tab active"><span class="nv-tab-n">1</span> {path.endsWith('/') ? `${file}/` : file}</span>
+    <span class="nv-tab-fill"></span>
+    <span class="nv-tab-right">nvim</span>
+  </div>
+) : (
+  <div class="nv-statusline mono" aria-hidden="true" data-scroll={scroll ? 'true' : undefined}>
+    <span class="nv-mode">{t('blog.mode')}</span>
+    <span class="nv-seg nv-branch">&#xe0a0; main</span>
+    <span class="nv-seg nv-file">{path}</span>
+    <span class="nv-fill"></span>
+    {right && <span class="nv-seg">{right}</span>}
+    <span class="nv-seg">utf-8</span>
+    <span class="nv-seg">markdown</span>
+    {scroll && <span class="nv-seg nv-pos" data-top={t('blog.top')} data-bot={t('blog.bot')}>{t('blog.top')}</span>}
+  </div>
+)}
+
+{scroll && (
+  <script>
+    const pos = document.querySelector<HTMLElement>('.nv-pos');
+    if (pos) {
+      const top = pos.dataset.top ?? 'Top';
+      const bot = pos.dataset.bot ?? 'Bot';
+      const update = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (max <= 0) { pos.textContent = 'All'; return; }
+        const pct = Math.round((window.scrollY / max) * 100);
+        pos.textContent = pct <= 0 ? top : pct >= 99 ? bot : `${pct}%`;
+      };
+      update();
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+    }
+  </script>
+)}

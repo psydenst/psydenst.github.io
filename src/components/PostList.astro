@@ -1,22 +1,36 @@
 ---
-import { formatDate, sectionLabel } from '../data/site';
-import { postUrl } from '../lib';
-interface Props { posts: any[]; showSection?: boolean }
-const { posts, showSection = true } = Astro.props;
+import { sectionLabel } from '../data/site';
+import { formatDate, localizePath, useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { postUrl, readingStats, type Post } from '../lib';
+interface Props { posts: Post[]; lang: Lang; showSection?: boolean }
+const { posts, lang, showSection = true } = Astro.props;
+const t = useTranslations(lang);
 ---
 {posts.length === 0 ? (
-  <p class="empty">No texts in this section yet.</p>
+  <p class="empty">{t('blog.empty')}</p>
 ) : (
-  <ul class="list">
-    {posts.map((p) => (
-      <li>
-        <div class="meta">
-          <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
-          {showSection && <a href={`/blog/${p.data.section}`}>{sectionLabel(p.data.section)}</a>}
-        </div>
-        <h3><a href={postUrl(p)}>{p.data.title}</a></h3>
-        <p class="muted">{p.data.description}</p>
-      </li>
-    ))}
+  <ul class="post-list">
+    {posts.map((p, i) => {
+      const { minutes } = readingStats(p.body);
+      return (
+        <li class="post-row">
+          <span class="post-ln" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <div class="post-body">
+            <div class="meta mono">
+              <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date, lang)}</time>
+              {showSection && <a href={localizePath(`/blog/${p.data.section}`, lang)}>{sectionLabel(p.data.section, lang)}</a>}
+              <span>{minutes} {t('blog.readingTime')}</span>
+              {p.data.lang !== lang && <span class={`badge ${p.data.lang}`}>{p.data.lang}</span>}
+            </div>
+            <h3><a href={postUrl(p, lang)}>{p.data.title}</a></h3>
+            <p class="muted">{p.data.description}</p>
+            {p.data.tags.length > 0 && (
+              <ul class="tags mono" aria-label="Tags">{p.data.tags.map((tag) => <li>#{tag}</li>)}</ul>
+            )}
+          </div>
+        </li>
+      );
+    })}
   </ul>
 )}

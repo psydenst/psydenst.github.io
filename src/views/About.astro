@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<Base title={t('about.title')} description={t('about.description')}>
+  <div class="wrap">
+    <header class="page-head"><p class="eyebrow">{t('about.title')}</p><h1>psydenst</h1><hr class="rule" /></header>
+    <div class="prose">
+      <p class="lede">{t('about.intro')}</p>
+      <div class="two-up">
+        <section>
+          <h2>{t('about.roles')}</h2>
+          <ul class="plain">
+            <li>{t('about.role.1')}</li>
+            <li>{t('about.role.2')}</li>
+            <li>{t('about.role.3')}</li>
+            <li>{t('about.role.4')}</li>
+          </ul>
+        </section>
+        <section>
+          <h2>{t('about.topics')}</h2>
+          <ul class="plain">
+            <li>{t('about.topic.1')}</li>
+            <li>{t('about.topic.2')}</li>
+            <li>{t('about.topic.3')}</li>
+            <li>{t('about.topic.4')}</li>
+            <li>{t('about.topic.5')}</li>
+          </ul>
+        </section>
+      </div>
+      <p>
+        {t('about.links.before')}<a href={site.github}>{t('about.links.github')}</a>{t('about.links.middle')}<a href={site.nymAuthor[lang]} target="_blank" rel="noopener noreferrer">{t('about.links.nym')}</a>{t('about.links.after')}
+      </p>
+    </div>
+  </div>
+</Base>

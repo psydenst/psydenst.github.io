@@ -1,8 +1,14 @@
 :root {
   color-scheme: dark;
+  /* canvas */
   --bg: #000000;
-  --overlay: rgba(0, 0, 0, 0.78);
+  --bg-elev: #0a0a0a;
+  --bg-card: #0c0c0c;
+  --rule: #26231f;
+  --rule-strong: #3a352f;
+  /* palette lifted from the hero painting */
   --orange: #c23b18;
+  --orange-bright: #e45a2e;
   --peach: #f3c2a0;
   --purple: #6b3aa0;
   --purple-muted: #9b84bd;
@@ -11,10 +17,19 @@
   --green: #8eae78;
   --brush: #e6e1dc;
   --text: #f4f0ea;
-  --muted: #b5b0aa;
-  --rule: #2a2724;
+  --muted: #a8a39d;
+  --accent: var(--orange);
+  --link: var(--peach);
+  --link-hover: var(--cyan-light);
+  /* type */
   --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --measure: 68ch;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* layout */
+  --measure: 66ch;
   --wrap: 72rem;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px -30px rgba(0, 0, 0, 0.9);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

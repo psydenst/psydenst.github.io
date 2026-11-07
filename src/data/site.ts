@@ -1,26 +1,42 @@
+import type { Lang } from '../i18n/ui';
+
 export const site = {
-  lang: 'en',
   name: 'psydenst',
   handle: 'psydenst',
-  title: 'psydenst: portfolio and blog',
-  description:
-    'Portfolio and blog of psydenst: software development, DevOps, cybersecurity, digital privacy, and technology and society.',
   github: 'https://github.com/psydenst',
-  nymAuthor: 'https://nym.com/pt/blog/author/pedro-sydenstricker',
+  nymAuthor: {
+    en: 'https://nym.com/blog/author/pedro-sydenstricker',
+    pt: 'https://nym.com/pt/blog/author/pedro-sydenstricker',
+  } satisfies Record<Lang, string>,
 };
 
 export const sections = [
-  { slug: 'technical-studies', label: 'Technical studies', blurb: 'Study notes and technical investigations.' },
-  { slug: 'fichamentos', label: 'Fichamentos', blurb: 'Structured reading notes.' },
-  { slug: 'comments', label: 'Comments', blurb: 'Short texts and reactions.' },
-  { slug: 'articles', label: 'Articles', blurb: 'Longer, finished pieces.' },
+  {
+    slug: 'technical-studies',
+    label: { en: 'Technical studies', pt: 'Estudos técnicos' },
+    blurb: { en: 'Study notes and technical investigations.', pt: 'Notas de estudo e investigações técnicas.' },
+  },
+  {
+    slug: 'fichamentos',
+    label: { en: 'Fichamentos', pt: 'Fichamentos' },
+    blurb: { en: 'Structured reading notes.', pt: 'Fichas de leitura estruturadas.' },
+  },
+  {
+    slug: 'comments',
+    label: { en: 'Comments', pt: 'Comentários' },
+    blurb: { en: 'Short texts and reactions.', pt: 'Textos curtos e reações.' },
+  },
+  {
+    slug: 'articles',
+    label: { en: 'Articles', pt: 'Artigos' },
+    blurb: { en: 'Longer, finished pieces.', pt: 'Textos mais longos e acabados.' },
+  },
 ] as const;
 
-export type SectionSlug = (typeof sections)[number]['slug'];
+export type Section = (typeof sections)[number];
+export type SectionSlug = Section['slug'];
 export const sectionSlugs = sections.map((s) => s.slug) as [SectionSlug, ...SectionSlug[]];
-export const sectionLabel = (slug: string) => sections.find((s) => s.slug === slug)?.label ?? slug;
+export const getSection = (slug: string) => sections.find((s) => s.slug === slug);
+export const sectionLabel = (slug: string, lang: Lang) => getSection(slug)?.label[lang] ?? slug;
 
 export const suggestedTags = ['42-rncp7', 'cybersecurity', 'devops', 'privacy', 'technology-and-society'];
-
-export const formatDate = (d: Date | string) =>
-  new Date(d).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });

@@ -1,15 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-import PublicationCard from '../components/PublicationCard.astro';
-import { publications } from '../data/publications';
-import { site } from '../data/site';
+import Publications from '../views/Publications.astro';
 ---
-<Base title="Publications" description="Articles by psydenst published on the Nym blog.">
-  <div class="wrap">
-    <header class="page-head">
-      <p class="eyebrow">Publications</p><h1>Published on Nym</h1><hr class="rule purple" />
-      <p class="muted">Pieces I wrote for the Nym blog. Each card links out to the original. Full list on the <a href={site.nymAuthor} target="_blank" rel="noopener noreferrer">Nym author page</a>.</p>
-    </header>
-    <ul class="card-grid">{publications.map((pub) => <PublicationCard pub={pub} />)}</ul>
-  </div>
-</Base>
+<Publications />
