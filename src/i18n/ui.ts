@@ -20,9 +20,7 @@ export const ui = {
       'Portfolio and blog of psydenst: software development, DevOps, cybersecurity, digital privacy, and technology and society.',
 
     'home.eyebrow': 'Portfolio · Blog',
-    'home.lede':
-      'Software developer and DevOps engineer, digital-privacy activist, Nym community writer, and co-founder of the TupiNymQuim squad.',
-    'home.topics': 'I write about 42 RNCP 7, cybersecurity, DevOps, privacy tests, and technology and society.',
+    'home.lede': 'DevOps and Software Engineer; I write about privacy, blockchain, cybersecurity, and society.',
     'home.cta.blog': 'Read the blog',
     'home.cta.about': 'About me',
     'home.latest': 'Latest texts',
@@ -104,9 +102,7 @@ export const ui = {
       'Portfólio e blog de psydenst: desenvolvimento de software, DevOps, cibersegurança, privacidade digital e tecnologia e sociedade.',
 
     'home.eyebrow': 'Portfólio · Blog',
-    'home.lede':
-      'Desenvolvedor de software e engenheiro DevOps, ativista pela privacidade digital, escritor da comunidade Nym e cofundador do squad TupiNymQuim.',
-    'home.topics': 'Escrevo sobre 42 RNCP 7, cibersegurança, DevOps, testes de privacidade e tecnologia e sociedade.',
+    'home.lede': 'DevOps e Software Engineer; escrevo sobre privacidade, blockchain, cibersegurança e sociedade.',
     'home.cta.blog': 'Ler o blog',
     'home.cta.about': 'Sobre mim',
     'home.latest': 'Últimos textos',

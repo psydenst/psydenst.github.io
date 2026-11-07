@@ -19,7 +19,6 @@ const countBy = (slug: string) => posts.filter((p) => p.data.section === slug).l
       <p class="eyebrow mono">{t('home.eyebrow')}</p>
       <h1 class="nv-title">psydenst<span class="dot">.</span><span class="cursor" aria-hidden="true"></span></h1>
       <p class="lede">{t('home.lede')}</p>
-      <p class="muted">{t('home.topics')}</p>
       <div class="actions">
         <a class="btn primary" href={localizePath('/blog', lang)}>{t('home.cta.blog')}</a>
         <a class="btn" href={localizePath('/about', lang)}>{t('home.cta.about')}</a>
