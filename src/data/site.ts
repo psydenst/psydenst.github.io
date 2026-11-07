@@ -18,8 +18,8 @@ export const sections = [
   },
   {
     slug: 'fichamentos',
-    label: { en: 'Fichamentos', pt: 'Fichamentos' },
-    blurb: { en: 'Structured reading notes.', pt: 'Fichas de leitura estruturadas.' },
+    label: { en: 'Reading notes', pt: 'Fichamentos' },
+    blurb: { en: 'Structured notes on books and papers.', pt: 'Fichas de leitura estruturadas.' },
   },
   {
     slug: 'comments',

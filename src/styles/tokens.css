@@ -1,35 +1,39 @@
 :root {
   color-scheme: dark;
-  /* canvas */
-  --bg: #000000;
-  --bg-elev: #0a0a0a;
-  --bg-card: #0c0c0c;
-  --rule: #26231f;
-  --rule-strong: #3a352f;
-  /* palette lifted from the hero painting */
-  --orange: #c23b18;
-  --orange-bright: #e45a2e;
-  --peach: #f3c2a0;
-  --purple: #6b3aa0;
-  --purple-muted: #9b84bd;
-  --cyan: #2f6f7c;
-  --cyan-light: #6fb3c1;
-  --green: #8eae78;
-  --brush: #e6e1dc;
-  --text: #f4f0ea;
-  --muted: #a8a39d;
-  --accent: var(--orange);
-  --link: var(--peach);
-  --link-hover: var(--cyan-light);
+  /* canvas: Neovim-style deep blue-black */
+  --bg: #07090f;
+  --bg-elev: #0b0e17;
+  --bg-card: #0d111b;
+  --rule: #161b2a;
+  --rule-strong: #242b3f;
+  --text: #c0caf5;
+  --brush: #e2e8ff;
+  --muted: #7a84a8;
+  /* editor palette (Tokyo Night family) */
+  --nv-blue: #7aa2f7;
+  --nv-cyan: #7dcfff;
+  --nv-teal: #73daca;
+  --nv-purple: #bb9af7;
+  --nv-magenta: #ff79c6;
+  --nv-green: #9ece6a;
+  --nv-orange: #ff9e64;
+  --nv-yellow: #e0af68;
+  --nv-red: #f7768e;
+  --nv-comment: #565f89;
+  --nv-gutter: #3b4261;
+  --nv-glow: 0 0 18px rgba(125, 207, 255, 0.25);
+  --accent: var(--nv-cyan);
+  --link: var(--nv-cyan);
+  --link-hover: var(--nv-purple);
   /* type */
   --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   /* layout */
-  --measure: 66ch;
-  --wrap: 72rem;
+  --measure: 70ch;
+  --wrap: 74rem;
   --radius: 10px;
   --radius-sm: 6px;
-  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px -30px rgba(0, 0, 0, 0.9);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 20px 50px -30px rgba(0, 0, 0, 0.9);
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }

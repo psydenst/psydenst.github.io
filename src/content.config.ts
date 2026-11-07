@@ -13,6 +13,13 @@ const blog = defineCollection({
     lang: z.enum(locales).default('en'),
     tags: z.array(z.string()).default([]),
     description: z.string(),
+    /** Site-relative path to a cover image, e.g. /blog/<slug>/cover.jpg */
+    cover: z.string().optional(),
+    /** URL of the original publication, when the text first appeared elsewhere. */
+    source: z.string().url().optional(),
+    sourceName: z.string().optional(),
+    /** Override the computed reading time (minutes). */
+    readingTime: z.number().int().positive().optional(),
     draft: z.boolean().default(false),
   }),
 });

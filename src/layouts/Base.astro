@@ -12,13 +12,12 @@ import { getLangFromUrl, localizePath, stripLang, useTranslations, localeTag } f
 interface Props {
   title?: string;
   description?: string;
-  /** 'site' = portfolio look; 'nvim' = blog reader look. */
-  theme?: 'site' | 'nvim';
+  image?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const { title, description = t('site.description'), theme = 'site' } = Astro.props;
+const { title, description = t('site.description'), image } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : t('site.title');
 
 const route = stripLang(Astro.url.pathname);
@@ -27,28 +26,27 @@ const nav = [
   { href: '/about', label: t('nav.about') },
   { href: '/portfolio', label: t('nav.portfolio') },
   { href: '/blog', label: t('nav.blog') },
-  { href: '/publications', label: t('nav.publications') },
 ];
 const isCurrent = (href: string) => (href === '/' ? route === '/' : route === href || route.startsWith(href + '/'));
 
 const origin = Astro.site ?? Astro.url;
 const abs = (p: string) => new URL(p, origin).href;
-const ogImage = abs('/og.png');
+const ogImage = abs(image ?? '/og.png');
 ---
 <!doctype html>
-<html lang={localeTag(lang)} data-theme={theme}>
+<html lang={localeTag(lang)}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content={theme === 'nvim' ? '#0a0d14' : '#000000'} />
+    <meta name="theme-color" content="#07090f" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={abs(localizePath(route, lang))} />
     <link rel="alternate" hreflang="en" href={abs(localizePath(route, 'en'))} />
     <link rel="alternate" hreflang="pt-BR" href={abs(localizePath(route, 'pt'))} />
     <link rel="alternate" hreflang="x-default" href={abs(localizePath(route, 'en'))} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={image ? 'article' : 'website'} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -81,8 +79,8 @@ const ogImage = abs('/og.png');
     <main id="main"><slot /></main>
     <footer class="site-footer">
       <div class="wrap">
-        <p class="footer-brand">psydenst<span class="dot">.</span> <span class="muted">· {new Date().getFullYear()}</span></p>
-        <ul>
+        <p class="footer-brand mono"><span class="dim">--</span> psydenst<span class="dot">.</span> <span class="dim">· {new Date().getFullYear()} --</span></p>
+        <ul class="mono">
           <li><a href={site.github} rel="noopener noreferrer">{t('footer.github')}</a></li>
           <li><a href={site.nymAuthor[lang]} target="_blank" rel="noopener noreferrer">{t('footer.nym')}</a></li>
         </ul>
@@ -96,7 +94,6 @@ const ogImage = abs('/og.png');
         btn.setAttribute('aria-expanded', String(open));
         document.body.classList.toggle('nav-open', open);
       });
-      // Remember the language the visitor picked.
       document.querySelectorAll<HTMLAnchorElement>('.lang-switch a').forEach((a) => {
         a.addEventListener('click', () => {
           try { localStorage.setItem('lang', a.dataset.lang ?? 'en'); } catch {}

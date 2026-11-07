@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 ) : (
   <ul class="post-list">
     {posts.map((p, i) => {
-      const { minutes } = readingStats(p.body);
+      const { minutes } = readingStats(p);
       return (
         <li class="post-row">
           <span class="post-ln" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
@@ -22,6 +22,7 @@ const t = useTranslations(lang);
               {showSection && <a href={localizePath(`/blog/${p.data.section}`, lang)}>{sectionLabel(p.data.section, lang)}</a>}
               <span>{minutes} {t('blog.readingTime')}</span>
               {p.data.lang !== lang && <span class={`badge ${p.data.lang}`}>{p.data.lang}</span>}
+              {p.data.sourceName && <span class="origin">↗ {p.data.sourceName}</span>}
             </div>
             <h3><a href={postUrl(p, lang)}>{p.data.title}</a></h3>
             <p class="muted">{p.data.description}</p>
@@ -29,6 +30,11 @@ const t = useTranslations(lang);
               <ul class="tags mono" aria-label="Tags">{p.data.tags.map((tag) => <li>#{tag}</li>)}</ul>
             )}
           </div>
+          {p.data.cover && (
+            <a class="post-thumb" href={postUrl(p, lang)} tabindex="-1" aria-hidden="true">
+              <img src={p.data.cover} alt="" loading="lazy" decoding="async" width="320" height="180" />
+            </a>
+          )}
         </li>
       );
     })}

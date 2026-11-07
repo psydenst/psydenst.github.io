@@ -23,24 +23,24 @@ Every route exists in English (no prefix) and Portuguese (`/pt/...`). The EN/PT 
 | `/about` | About |
 | `/portfolio` | Portfolio (data: `src/data/portfolio.ts`) |
 | `/blog` | All posts, with section filter |
-| `/blog/technical-studies`, `/blog/fichamentos`, `/blog/comments`, `/blog/articles` | Section pages |
+| `/blog/technical-studies`, `/blog/fichamentos`, `/blog/comments`, `/blog/articles` | Section pages ("Reading notes" is the English label of `fichamentos`) |
 | `/blog/<section>/<slug>/` | A post |
-| `/publications` | Nym articles (data: `src/data/publications.ts`) |
 
 ## Structure
 
 - `src/pages/` – thin route files for both locales; they render the shared views in `src/views/`.
 - `src/i18n/ui.ts` – all UI strings, per language. `src/i18n/utils.ts` – `getLangFromUrl`, `useTranslations`, `localizePath`, `formatDate`.
+- `src/lib.ts` – post queries (`getPosts`, `postUrl`, static paths, reading time).
 - `src/data/site.ts` – blog sections (labels in both languages), GitHub and Nym links.
-- `src/styles/` – `tokens.css` (palette from the painting), `global.css`, `layout.css`, and `nvim.css` (the blog reader theme). `shiki-theme.mjs` is the code-highlighting palette.
+- `src/styles/` – `tokens.css` (palette), `global.css`, `layout.css` (header, hero, footer, cards), and `nvim.css` (editor chrome and the article reader). `shiki-theme.mjs` is the code-highlighting palette.
 
-## Blog reader theme
+## Theme
 
-Blog pages (`/blog/**`) switch to a Neovim-flavoured dark theme (`<html data-theme="nvim">`): tabline and statusline, blinking cursor in titles, outline sidebar on posts, code blocks with a line-number gutter and a Tokyo Night-style palette (`src/styles/shiki-theme.mjs`). Everything else uses the portfolio theme.
+The whole site uses a Neovim-flavoured sci-fi dark theme: Tokyo Night-style palette, faint HUD grid, tabline and statusline on every page, blinking cursor in titles. The home hero keeps the painting, faded into the canvas. Posts get an outline sidebar, `##`-prefixed headings, highlighted bold phrases, responsive tables and video embeds, and code blocks with a line-number gutter (`src/styles/shiki-theme.mjs`).
 
-## Add a blog post
+## Posts
 
-Create a Markdown file in `src/content/blog/` (subfolders are fine). The file name becomes the slug. Posts are listed in both language versions of the site; `lang` marks the language the text is written in.
+Posts live in `src/content/blog/<lang>/<section>/<slug>.md`. The file name is the slug; the same slug in `en/` and `pt/` makes the two files translations of each other. A post without a translation is still listed in the other language, with a language badge and an "only available in …" notice.
 
 ```markdown
 ---
@@ -50,16 +50,24 @@ section: technical-studies   # technical-studies | fichamentos | comments | arti
 lang: en                     # en | pt (language of the text)
 tags: [devops, privacy]
 description: "One-line summary shown in lists and meta tags."
-draft: false                 # true hides it from the build
+cover: "/blog/my-post/cover.webp"   # optional, file in public/
+source: "https://nym.com/blog/..."  # optional: where it was first published
+sourceName: "Nym"                   # optional: label for the source link
+readingTime: 6                      # optional: overrides the computed minutes
+draft: false                        # true hides it from the build
 ---
 
 Body in Markdown.
 ```
 
-Suggested tags: `42-rncp7`, `cybersecurity`, `devops`, `privacy`, `technology-and-society`.
+Suggested tags: `42-rncp7`, `cybersecurity`, `devops`, `privacy`, `technology-and-society`, `crypto`.
 Sections are defined in `src/data/site.ts`; the schema is in `src/content.config.ts`. Empty sections show "No texts in this section yet."
 
-`src/content/blog/technical-studies/hello-world.md` is a starter post kept as `draft: true`; set it to `false` to see the reader theme, or delete it.
+`src/content/blog/en/technical-studies/hello-world.md` is a starter post kept as `draft: true`; set it to `false` to see a code-heavy post, or delete it.
+
+### Articles first published on Nym
+
+`src/content/blog/{en,pt}/articles/` holds the author's articles from the [Nym blog](https://nym.com/blog/author/pedro-sydenstricker), republished in full (text, headings, tables, images, videos, FAQs). Images are in `public/blog/<slug>/`. Each post sets `source` / `sourceName`, which adds an "Originally published on Nym" side note and footer link to the original. Promotional blocks (pricing banners, download buttons) are left out. Links between republished articles point to the local copies; other Nym links stay absolute.
 
 ## Deploy (GitHub Pages)
 
@@ -67,6 +75,5 @@ Sections are defined in `src/data/site.ts`; the schema is in `src/content.config
 
 ## Content constraints
 
-- Nym publications are **outbound links only**: title, date, a one-line teaser, and a "Read on Nym" link, each in EN and PT. Never scrape, copy, or republish Nym article bodies in this repo.
-- If a Nym URL later 404s, keep the card; do not invent a replacement.
+- Republished articles always keep their `source` link to the original publication.
 - Do not publish 42 graded project solutions, secrets, or contact details not supplied by the owner.

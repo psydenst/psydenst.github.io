@@ -1,6 +1,6 @@
 ---
 import BlogPost from '../../../views/BlogPost.astro';
-import { postPaths } from '../../../lib';
-export const getStaticPaths = postPaths;
+import { postPathsFor } from '../../../lib';
+export const getStaticPaths = postPathsFor('en');
 ---
 <BlogPost post={Astro.props.post} />

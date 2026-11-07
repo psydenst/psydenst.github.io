@@ -1,14 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import NvimBar from '../components/NvimBar.astro';
 import { site } from '../data/site';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 <Base title={t('about.title')} description={t('about.description')}>
-  <div class="wrap">
-    <header class="page-head"><p class="eyebrow">{t('about.title')}</p><h1>psydenst</h1><hr class="rule" /></header>
-    <div class="prose">
+  <div class="wrap nv-page">
+    <NvimBar kind="tab" path="~/about.md" />
+    <header class="page-head">
+      <p class="eyebrow mono">:e about.md</p>
+      <h1 class="nv-title">psydenst<span class="cursor" aria-hidden="true"></span></h1>
+    </header>
+    <div class="prose nv-prose">
       <p class="lede">{t('about.intro')}</p>
       <div class="two-up">
         <section>
@@ -32,8 +37,9 @@ const t = useTranslations(lang);
         </section>
       </div>
       <p>
-        {t('about.links.before')}<a href={site.github}>{t('about.links.github')}</a>{t('about.links.middle')}<a href={site.nymAuthor[lang]} target="_blank" rel="noopener noreferrer">{t('about.links.nym')}</a>{t('about.links.after')}
+        {t('about.links.before')}<a href={site.github}>{t('about.links.github')}</a>{t('about.links.middle')}<a href={localizePath('/blog/articles', lang)}>{t('about.links.blog')}</a>{t('about.links.after')}
       </p>
     </div>
+    <NvimBar kind="status" path="~/about.md" lang={lang} />
   </div>
 </Base>

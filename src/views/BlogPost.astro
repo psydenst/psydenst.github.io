@@ -10,14 +10,17 @@ const { post } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { Content, headings } = await render(post);
-const { words, minutes } = readingStats(post.body);
+const { words, minutes } = readingStats(post);
 const file = `~/blog/${post.data.section}/${postSlug(post.id)}.md`;
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const source = post.data.source ? new URL(post.data.source) : null;
+const sourceName = post.data.sourceName ?? source?.hostname.replace(/^www\./, '');
+const untranslated = post.data.lang !== lang;
 ---
-<Base title={post.data.title} description={post.data.description} theme="nvim">
+<Base title={post.data.title} description={post.data.description} image={post.data.cover}>
   <div class="wrap nv-page nv-post">
     <NvimBar kind="tab" path={file} />
-    <article>
+    <article lang={post.data.lang === 'pt' ? 'pt-BR' : 'en'}>
       <header class="post-head">
         <p class="eyebrow mono">
           <a href={localizePath(`/blog/${post.data.section}`, lang)}>{sectionLabel(post.data.section, lang)}</a>
@@ -29,24 +32,46 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
           <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, lang)}</time>
           <span>{minutes} {t('blog.readingTime')}</span>
           <span>{words} {t('blog.words')}</span>
-          {post.data.lang !== lang && <span class={`badge ${post.data.lang}`}>{post.data.lang}</span>}
+          {untranslated && <span class={`badge ${post.data.lang}`}>{post.data.lang}</span>}
         </div>
         {post.data.tags.length > 0 && (
           <ul class="tags mono" aria-label="Tags">{post.data.tags.map((tag) => <li>#{tag}</li>)}</ul>
         )}
+        {untranslated && <p class="notice mono">{t('blog.untranslated')}</p>}
       </header>
 
+      {post.data.cover && (
+        <figure class="post-cover">
+          <img src={post.data.cover} alt="" width="1280" height="720" loading="eager" decoding="async" />
+        </figure>
+      )}
+
       <div class="post-grid">
-        {toc.length > 1 && (
-          <aside class="toc mono" aria-label="Outline">
-            <p class="dim">-- outline --</p>
-            <ol>
-              {toc.map((h) => <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>)}
-            </ol>
-          </aside>
-        )}
+        <aside class="post-side">
+          {source && (
+            <div class="side-note mono">
+              <p class="dim">-- {t('post.source').toLowerCase()} --</p>
+              <p class="side-source"><a href={source.href} target="_blank" rel="noopener noreferrer">{sourceName} <span aria-hidden="true">↗</span></a></p>
+              <p class="muted">{t('post.sourceNote')}</p>
+            </div>
+          )}
+          {toc.length > 1 && (
+            <nav class="toc mono" aria-label={t('blog.outline')}>
+              <p class="dim">-- {t('blog.outline')} --</p>
+              <ol>
+                {toc.map((h) => <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>)}
+              </ol>
+            </nav>
+          )}
+        </aside>
         <div class="prose nv-prose" id="post-body"><Content /></div>
       </div>
+
+      {source && (
+        <footer class="post-foot mono">
+          <span class="dim">--</span> {t('post.source')} <a href={source.href} target="_blank" rel="noopener noreferrer">{sourceName}</a> · <a href={source.href} target="_blank" rel="noopener noreferrer">{t('post.readOriginal')} ↗</a> <span class="dim">--</span>
+        </footer>
+      )}
     </article>
     <NvimBar kind="status" path={file} lang={lang} scroll />
   </div>

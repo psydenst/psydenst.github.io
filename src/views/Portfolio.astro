@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import NvimBar from '../components/NvimBar.astro';
 import { portfolio } from '../data/portfolio';
 import { site } from '../data/site';
 import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
@@ -7,11 +8,15 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 <Base title={t('portfolio.title')} description={t('portfolio.description')}>
-  <div class="wrap">
-    <header class="page-head"><p class="eyebrow">{t('portfolio.title')}</p><h1>{t('portfolio.heading')}</h1><hr class="rule cyan" /></header>
+  <div class="wrap nv-page">
+    <NvimBar kind="tab" path="~/portfolio/" />
+    <header class="page-head">
+      <p class="eyebrow mono">:ls portfolio</p>
+      <h1 class="nv-title">{t('portfolio.heading')}<span class="cursor" aria-hidden="true"></span></h1>
+    </header>
     {portfolio.length === 0 ? (
       <p class="empty">
-        {t('portfolio.empty.before')}<a href={site.github}>{t('portfolio.empty.github')}</a>{t('portfolio.empty.middle')}<a href={localizePath('/publications', lang)}>{t('portfolio.empty.pubs')}</a>{t('portfolio.empty.after')}
+        {t('portfolio.empty.before')}<a href={site.github}>{t('portfolio.empty.github')}</a>{t('portfolio.empty.middle')}<a href={localizePath('/blog', lang)}>{t('portfolio.empty.blog')}</a>{t('portfolio.empty.after')}
       </p>
     ) : (
       <ul class="card-grid">
@@ -24,5 +29,6 @@ const t = useTranslations(lang);
         ))}
       </ul>
     )}
+    <NvimBar kind="status" path="~/portfolio/" right={`${portfolio.length} ${portfolio.length === 1 ? 'buf' : 'bufs'}`} lang={lang} />
   </div>
 </Base>

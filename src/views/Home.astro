@@ -1,45 +1,57 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
-import PublicationCard from '../components/PublicationCard.astro';
-import { publications } from '../data/publications';
+import NvimBar from '../components/NvimBar.astro';
+import { sections } from '../data/site';
 import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
 import { getPosts } from '../lib';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const latest = (await getPosts()).slice(0, 5);
+const posts = await getPosts(lang);
+const latest = posts.slice(0, 6);
+const countBy = (slug: string) => posts.filter((p) => p.data.section === slug).length;
 ---
 <Base>
   <section class="hero">
     <div class="hero-art" aria-hidden="true"></div>
     <div class="wrap hero-copy">
-      <p class="eyebrow">{t('home.eyebrow')}</p>
-      <h1>psydenst<span class="dot">.</span></h1>
+      <p class="eyebrow mono">{t('home.eyebrow')}</p>
+      <h1 class="nv-title">psydenst<span class="dot">.</span><span class="cursor" aria-hidden="true"></span></h1>
       <p class="lede">{t('home.lede')}</p>
       <p class="muted">{t('home.topics')}</p>
       <div class="actions">
         <a class="btn primary" href={localizePath('/blog', lang)}>{t('home.cta.blog')}</a>
-        <a class="btn" href={localizePath('/publications', lang)}>{t('home.cta.pubs')}</a>
+        <a class="btn" href={localizePath('/about', lang)}>{t('home.cta.about')}</a>
       </div>
     </div>
   </section>
 
-  <div class="wrap cols home-cols">
+  <div class="wrap nv-page home-body">
+    <NvimBar kind="tab" path="~/" />
     <section>
-      <h2>{t('home.latest')}</h2><hr class="rule" />
+      <h2 class="mono-h">{t('home.latest')}</h2>
       {latest.length === 0 ? (
         <p class="empty">{t('home.latest.empty')} <a href={localizePath('/blog', lang)}>{t('home.latest.link')}</a>.</p>
       ) : (
         <PostList posts={latest} lang={lang} />
       )}
+      <p class="more mono"><a href={localizePath('/blog', lang)}>{t('home.allPosts')} →</a></p>
     </section>
     <section>
-      <h2>{t('home.onNym')}</h2><hr class="rule purple" />
-      <ul class="card-grid single">
-        {publications.slice(0, 3).map((pub) => <PublicationCard pub={pub} lang={lang} />)}
+      <h2 class="mono-h">{t('home.sections')}</h2>
+      <ul class="section-grid">
+        {sections.map((s) => (
+          <li>
+            <a href={localizePath(`/blog/${s.slug}`, lang)}>
+              <span class="mono dim">./{s.slug}/ <span class="count">{countBy(s.slug)}</span></span>
+              <strong>{s.label[lang]}</strong>
+              <span class="muted">{s.blurb[lang]}</span>
+            </a>
+          </li>
+        ))}
       </ul>
-      <p class="more"><a href={localizePath('/publications', lang)}>{t('home.allPubs')} →</a></p>
     </section>
+    <NvimBar kind="status" path="~/" right={`${posts.length} ${posts.length === 1 ? 'buf' : 'bufs'}`} lang={lang} />
   </div>
 </Base>

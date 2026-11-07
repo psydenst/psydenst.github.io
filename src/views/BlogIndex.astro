@@ -3,14 +3,13 @@ import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import SectionChips from '../components/SectionChips.astro';
 import NvimBar from '../components/NvimBar.astro';
-import { sections } from '../data/site';
-import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getPosts } from '../lib';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const posts = await getPosts();
+const posts = await getPosts(lang);
 ---
-<Base title={t('blog.title')} description={t('blog.description')} theme="nvim">
+<Base title={t('blog.title')} description={t('blog.description')}>
   <div class="wrap nv-page">
     <NvimBar kind="tab" path="~/blog/" />
     <header class="page-head">
@@ -20,18 +19,6 @@ const posts = await getPosts();
     </header>
     <SectionChips lang={lang} />
     <PostList posts={posts} lang={lang} />
-    <h2 class="mono-h">{t('blog.sections')}</h2>
-    <ul class="section-grid">
-      {sections.map((s) => (
-        <li>
-          <a href={localizePath(`/blog/${s.slug}`, lang)}>
-            <span class="mono dim">./{s.slug}/</span>
-            <strong>{s.label[lang]}</strong>
-            <span class="muted">{s.blurb[lang]}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
     <NvimBar kind="status" path="~/blog/" right={`${posts.length} ${posts.length === 1 ? 'buf' : 'bufs'}`} lang={lang} />
   </div>
 </Base>
