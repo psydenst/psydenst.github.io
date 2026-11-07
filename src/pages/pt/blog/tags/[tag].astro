@@ -1,0 +1,6 @@
+---
+import BlogTopic from '../../../../views/BlogTopic.astro';
+import { tagPathsFor } from '../../../../lib';
+export const getStaticPaths = tagPathsFor('pt');
+---
+<BlogTopic tag={Astro.props.tag} />

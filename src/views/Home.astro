@@ -2,15 +2,15 @@
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import NvimBar from '../components/NvimBar.astro';
-import { sections } from '../data/site';
+import { topicBlurb, topicLabel } from '../data/site';
 import { getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
-import { getPosts } from '../lib';
+import { getPosts, getTopics, tagPath } from '../lib';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const posts = await getPosts(lang);
 const latest = posts.slice(0, 6);
-const countBy = (slug: string) => posts.filter((p) => p.data.section === slug).length;
+const topics = await getTopics(lang);
 ---
 <Base>
   <section class="hero">
@@ -38,14 +38,14 @@ const countBy = (slug: string) => posts.filter((p) => p.data.section === slug).l
       <p class="more mono"><a href={localizePath('/blog', lang)}>{t('home.allPosts')} →</a></p>
     </section>
     <section>
-      <h2 class="mono-h">{t('home.sections')}</h2>
+      <h2 class="mono-h">{t('home.topics')}</h2>
       <ul class="section-grid">
-        {sections.map((s) => (
+        {topics.map(({ tag, count }) => (
           <li>
-            <a href={localizePath(`/blog/${s.slug}`, lang)}>
-              <span class="mono dim">./{s.slug}/ <span class="count">{countBy(s.slug)}</span></span>
-              <strong>{s.label[lang]}</strong>
-              <span class="muted">{s.blurb[lang]}</span>
+            <a href={localizePath(tagPath(tag), lang)}>
+              <span class="mono dim"><span class="hash">#</span>{tag} <span class="count">{count}</span></span>
+              <strong>{topicLabel(tag, lang)}</strong>
+              {topicBlurb(tag, lang) && <span class="muted">{topicBlurb(tag, lang)}</span>}
             </a>
           </li>
         ))}

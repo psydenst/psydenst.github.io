@@ -2,7 +2,7 @@
 import { sectionLabel } from '../data/site';
 import { formatDate, localizePath, useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
-import { postUrl, readingStats, type Post } from '../lib';
+import { postUrl, readingStats, tagPath, type Post } from '../lib';
 interface Props { posts: Post[]; lang: Lang; showSection?: boolean }
 const { posts, lang, showSection = true } = Astro.props;
 const t = useTranslations(lang);
@@ -27,7 +27,7 @@ const t = useTranslations(lang);
             <h3><a href={postUrl(p, lang)}>{p.data.title}</a></h3>
             <p class="muted">{p.data.description}</p>
             {p.data.tags.length > 0 && (
-              <ul class="tags mono" aria-label="Tags">{p.data.tags.map((tag) => <li>#{tag}</li>)}</ul>
+              <ul class="tags mono" aria-label="Tags">{p.data.tags.map((tag) => <li><a href={localizePath(tagPath(tag), lang)}>#{tag}</a></li>)}</ul>
             )}
           </div>
           {p.data.cover && (

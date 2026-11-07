@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import BlogFilters from '../components/BlogFilters.astro';
+import NvimBar from '../components/NvimBar.astro';
+import { topicBlurb, topicLabel } from '../data/site';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getPosts } from '../lib';
+interface Props { tag: string }
+const { tag } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const posts = (await getPosts(lang)).filter((p) => p.data.tags.includes(tag));
+const label = topicLabel(tag, lang);
+const blurb = topicBlurb(tag, lang) ?? `${t('blog.tagged')} #${tag}.`;
+const path = `~/blog/tags/${tag}/`;
+---
+<Base title={label} description={`${label}: ${blurb}`}>
+  <div class="wrap nv-page">
+    <NvimBar kind="tab" path={path} />
+    <header class="page-head">
+      <p class="eyebrow mono">:grep <span class="hash">#</span>{tag}</p>
+      <h1 class="nv-title">{label}<span class="cursor" aria-hidden="true"></span></h1>
+      <p class="muted">{blurb}</p>
+    </header>
+    <BlogFilters tag={tag} lang={lang} />
+    <PostList posts={posts} lang={lang} />
+    <NvimBar kind="status" path={path} right={`${posts.length} ${posts.length === 1 ? 'buf' : 'bufs'}`} lang={lang} />
+  </div>
+</Base>

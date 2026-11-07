@@ -24,6 +24,7 @@ Every route exists in English (no prefix) and Portuguese (`/pt/...`). The EN/PT 
 | `/portfolio` | Portfolio (data: `src/data/portfolio.ts`) |
 | `/blog` | All posts, with section filter |
 | `/blog/technical-studies`, `/blog/fichamentos`, `/blog/comments`, `/blog/articles` | Section pages ("Reading notes" is the English label of `fichamentos`) |
+| `/blog/tags/<tag>/` | Topic page: every post with that tag (e.g. `/blog/tags/privacy/`) |
 | `/blog/<section>/<slug>/` | A post |
 
 ## Structure
@@ -60,7 +61,11 @@ draft: false                        # true hides it from the build
 Body in Markdown.
 ```
 
-Suggested tags: `42-rncp7`, `cybersecurity`, `devops`, `privacy`, `technology-and-society`, `crypto`.
+### Topics (tags)
+
+Tags are the blog's topics. Every tag used by a published post gets its own page at `/blog/tags/<tag>/` in both languages, and a post with several tags appears on each of those pages. The blog index and the home page list the topics with post counts; the section (Articles, Reading notes, …) is kept as a secondary "type" filter. Tags must be lowercase-hyphenated slugs. Labels and one-line descriptions per language live in `topics` in `src/data/site.ts`; a new tag works without an entry there and is labelled with the tag itself.
+
+Current tags: `privacy`, `cybersecurity`, `technology-and-society`, `crypto`, `devops`, `42-rncp7`.
 Sections are defined in `src/data/site.ts`; the schema is in `src/content.config.ts`. Empty sections show "No texts in this section yet."
 
 `src/content/blog/en/technical-studies/hello-world.md` is a starter post kept as `draft: true`; set it to `false` to see a code-heavy post, or delete it.

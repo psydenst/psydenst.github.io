@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import NvimBar from '../components/NvimBar.astro';
 import { sectionLabel } from '../data/site';
 import { formatDate, getLangFromUrl, localizePath, useTranslations } from '../i18n/utils';
-import { postSlug, readingStats, type Post } from '../lib';
+import { postSlug, readingStats, tagPath, type Post } from '../lib';
 interface Props { post: Post }
 const { post } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
@@ -35,7 +35,7 @@ const untranslated = post.data.lang !== lang;
           {untranslated && <span class={`badge ${post.data.lang}`}>{post.data.lang}</span>}
         </div>
         {post.data.tags.length > 0 && (
-          <ul class="tags mono" aria-label="Tags">{post.data.tags.map((tag) => <li>#{tag}</li>)}</ul>
+          <ul class="tags mono" aria-label="Tags">{post.data.tags.map((tag) => <li><a href={localizePath(tagPath(tag), lang)}>#{tag}</a></li>)}</ul>
         )}
         {untranslated && <p class="notice mono">{t('blog.untranslated')}</p>}
       </header>

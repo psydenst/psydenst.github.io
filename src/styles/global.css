@@ -73,11 +73,19 @@ code, kbd, samp, .mono { font-family: var(--font-mono); font-feature-settings: '
 .badge { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .08rem .45rem; border: 1px solid var(--nv-magenta); color: var(--nv-magenta); border-radius: 4px; }
 .badge.en { border-color: var(--nv-green); color: var(--nv-green); }
 .tags { list-style: none; padding: 0; margin: .5rem 0 0; display: flex; flex-wrap: wrap; gap: .35rem .75rem; font-size: .78rem; color: var(--nv-purple); }
+.tags a { color: inherit; text-decoration: none; }
+.tags a:hover { color: var(--accent); text-decoration: underline; }
+.hash { color: var(--nv-purple); }
 
-.chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; margin: 0 0 1.75rem; }
-.chips a { display: inline-block; padding: .35rem .85rem; border: 1px solid var(--rule-strong); border-radius: var(--radius-sm); color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: .8rem; transition: border-color .15s var(--ease), color .15s var(--ease); }
+.filters { margin: 0 0 1.75rem; display: grid; gap: .75rem; }
+.chips { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; padding: 0; list-style: none; margin: 0; }
+.chips a { display: inline-flex; align-items: baseline; gap: .1rem; padding: .35rem .8rem; border: 1px solid var(--rule-strong); border-radius: var(--radius-sm); color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: .8rem; transition: border-color .15s var(--ease), color .15s var(--ease); }
 .chips a:hover { border-color: var(--accent); color: var(--accent); }
 .chips a[aria-current='page'] { border-color: var(--accent); background: rgba(125, 207, 255, 0.12); color: var(--accent); }
+.chips .n { margin-left: .35rem; font-size: .7rem; color: var(--nv-orange); }
+.chips-sub a { padding: .2rem .6rem; font-size: .72rem; border-style: dashed; }
+.chips-sub a[aria-current='page'] { border-style: solid; }
+.chips-label { font-size: .72rem; color: var(--nv-comment); margin-right: .15rem; }
 
 /* post list */
 .post-list { list-style: none; padding: 0; margin: 0; }

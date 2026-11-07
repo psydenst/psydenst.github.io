@@ -43,6 +43,24 @@ export function postPathsFor(lang: Lang) {
   };
 }
 
+export type Topic = { tag: string; count: number };
+
+/** Tags used by the posts shown in a language, most used first. */
+export async function getTopics(lang: Lang): Promise<Topic[]> {
+  const counts = new Map<string, number>();
+  for (const p of await getPosts(lang)) for (const tag of p.data.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+  return [...counts]
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+}
+
+export const tagPath = (tag: string) => `/blog/tags/${tag}/`;
+
+/** Static paths for /blog/tags/[tag] for one locale. */
+export function tagPathsFor(lang: Lang) {
+  return async () => (await getTopics(lang)).map(({ tag }) => ({ params: { tag }, props: { tag } }));
+}
+
 export function readingStats(post: Post) {
   const text = (post.body ?? '')
     .replace(/```[\s\S]*?```/g, ' ')

@@ -11,7 +11,7 @@ const blog = defineCollection({
     date: z.coerce.date(),
     section: z.enum(sectionSlugs),
     lang: z.enum(locales).default('en'),
-    tags: z.array(z.string()).default([]),
+    tags: z.array(z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'tags are lowercase-hyphenated slugs')).default([]),
     description: z.string(),
     /** Site-relative path to a cover image, e.g. /blog/<slug>/cover.jpg */
     cover: z.string().optional(),

@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
-import SectionChips from '../components/SectionChips.astro';
+import BlogFilters from '../components/BlogFilters.astro';
 import NvimBar from '../components/NvimBar.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getPosts } from '../lib';
@@ -17,7 +17,7 @@ const posts = await getPosts(lang);
       <h1 class="nv-title">{t('blog.title')}<span class="cursor" aria-hidden="true"></span></h1>
       <p class="muted">{t('blog.description')}</p>
     </header>
-    <SectionChips lang={lang} />
+    <BlogFilters lang={lang} />
     <PostList posts={posts} lang={lang} />
     <NvimBar kind="status" path="~/blog/" right={`${posts.length} ${posts.length === 1 ? 'buf' : 'bufs'}`} lang={lang} />
   </div>

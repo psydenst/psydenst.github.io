@@ -1,0 +1,32 @@
+---
+import { sections } from '../data/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { getPosts, getTopics, tagPath } from '../lib';
+interface Props { tag?: string; section?: string; lang: Lang }
+const { tag, section, lang } = Astro.props;
+const t = useTranslations(lang);
+const posts = await getPosts(lang);
+const topics = await getTopics(lang);
+const types = sections
+  .map((s) => ({ ...s, count: posts.filter((p) => p.data.section === s.slug).length }))
+  .filter((s) => s.count > 0 || s.slug === section);
+---
+<div class="filters">
+  <ul class="chips" aria-label={t('blog.topics.aria')}>
+    <li><a href={localizePath('/blog', lang)} aria-current={!tag && !section ? 'page' : undefined}>{t('blog.all')} <span class="n">{posts.length}</span></a></li>
+    {topics.map((topic) => (
+      <li>
+        <a href={localizePath(tagPath(topic.tag), lang)} aria-current={tag === topic.tag ? 'page' : undefined}>
+          <span class="hash">#</span>{topic.tag} <span class="n">{topic.count}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <ul class="chips chips-sub" aria-label={t('blog.sections.aria')}>
+    <li class="chips-label mono" aria-hidden="true">{t('blog.types')}:</li>
+    {types.map((s) => (
+      <li><a href={localizePath(`/blog/${s.slug}`, lang)} aria-current={section === s.slug ? 'page' : undefined}>{s.label[lang]} <span class="n">{s.count}</span></a></li>
+    ))}
+  </ul>
+</div>

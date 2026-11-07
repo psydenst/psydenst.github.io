@@ -39,4 +39,37 @@ export const sectionSlugs = sections.map((s) => s.slug) as [SectionSlug, ...Sect
 export const getSection = (slug: string) => sections.find((s) => s.slug === slug);
 export const sectionLabel = (slug: string, lang: Lang) => getSection(slug)?.label[lang] ?? slug;
 
-export const suggestedTags = ['42-rncp7', 'cybersecurity', 'devops', 'privacy', 'technology-and-society'];
+/**
+ * Topics are the post tags; each tag used by a published post gets a page at /blog/tags/<tag>/.
+ * Tags missing here still get a page, labelled with the tag itself.
+ */
+export const topics: Record<string, { label: Record<Lang, string>; blurb: Record<Lang, string> }> = {
+  privacy: {
+    label: { en: 'Privacy', pt: 'Privacidade' },
+    blurb: { en: 'Surveillance, metadata, and the tools that keep people anonymous.', pt: 'Vigilância, metadados e as ferramentas que mantêm as pessoas anônimas.' },
+  },
+  cybersecurity: {
+    label: { en: 'Cybersecurity', pt: 'Cibersegurança' },
+    blurb: { en: 'Attacks, defenses, and how networks break.', pt: 'Ataques, defesas e como as redes quebram.' },
+  },
+  'technology-and-society': {
+    label: { en: 'Technology & society', pt: 'Tecnologia e sociedade' },
+    blurb: { en: 'Power, censorship, and decentralization on the internet.', pt: 'Poder, censura e descentralização na internet.' },
+  },
+  crypto: {
+    label: { en: 'Crypto', pt: 'Cripto' },
+    blurb: { en: 'Blockchains, private money, and how they work.', pt: 'Blockchains, dinheiro privado e como funcionam.' },
+  },
+  devops: {
+    label: { en: 'DevOps', pt: 'DevOps' },
+    blurb: { en: 'Infrastructure as code, Terraform, and running systems in production.', pt: 'Infraestrutura como código, Terraform e sistemas em produção.' },
+  },
+  '42-rncp7': {
+    label: { en: '42 RNCP 7', pt: '42 RNCP 7' },
+    blurb: { en: 'Notes from the 42 RNCP level 7 track.', pt: 'Notas da trilha RNCP nível 7 da 42.' },
+  },
+};
+export const topicLabel = (tag: string, lang: Lang) => topics[tag]?.label[lang] ?? tag;
+export const topicBlurb = (tag: string, lang: Lang) => topics[tag]?.blurb[lang];
+
+export const suggestedTags = ['42-rncp7', 'crypto', 'cybersecurity', 'devops', 'privacy', 'technology-and-society'];
