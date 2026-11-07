@@ -20,7 +20,7 @@ export const ui = {
       'Portfolio and blog of psydenst: software development, DevOps, cybersecurity, digital privacy, and technology and society.',
 
     'home.eyebrow': 'Portfolio · Blog',
-    'home.lede': 'DevOps and Software Engineer; I write about privacy, blockchain, cybersecurity, and society.',
+    'home.lede': 'DevOps and Software Engineer; I write about privacy, blockchain, IaC, cybersecurity, and society.',
     'home.cta.blog': 'Read the blog',
     'home.cta.about': 'About me',
     'home.latest': 'Latest texts',
@@ -102,7 +102,7 @@ export const ui = {
       'Portfólio e blog de psydenst: desenvolvimento de software, DevOps, cibersegurança, privacidade digital e tecnologia e sociedade.',
 
     'home.eyebrow': 'Portfólio · Blog',
-    'home.lede': 'DevOps e Software Engineer; escrevo sobre privacidade, blockchain, cibersegurança e sociedade.',
+    'home.lede': 'DevOps e Software Engineer; escrevo sobre privacidade, blockchain, IaC, cibersegurança e sociedade.',
     'home.cta.blog': 'Ler o blog',
     'home.cta.about': 'Sobre mim',
     'home.latest': 'Últimos textos',
