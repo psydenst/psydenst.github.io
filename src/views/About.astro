@@ -13,32 +13,83 @@ const t = useTranslations(lang);
       <p class="eyebrow mono">:e about.md</p>
       <h1 class="nv-title">psydenst<span class="cursor" aria-hidden="true"></span></h1>
     </header>
-    <div class="prose nv-prose">
+    <div class="about-layout">
       <p class="lede">{t('about.intro')}</p>
-      <div class="two-up">
-        <section>
-          <h2>{t('about.roles')}</h2>
-          <ul class="plain">
-            <li>{t('about.role.1')}</li>
-            <li>{t('about.role.2')}</li>
-            <li>{t('about.role.3')}</li>
-          </ul>
-        </section>
-        <section>
-          <h2>{t('about.topics')}</h2>
-          <ul class="plain">
-            <li>{t('about.topic.1')}</li>
-            <li>{t('about.topic.2')}</li>
-            <li>{t('about.topic.3')}</li>
-            <li>{t('about.topic.4')}</li>
-            <li>{t('about.topic.5')}</li>
-          </ul>
-        </section>
+      <figure class="about-portrait">
+        <img
+          src="/artwork/portrait.webp"
+          width="1000"
+          height="1000"
+          alt="Sketch portrait of psydenst"
+        />
+      </figure>
+      <div class="about-rest prose nv-prose">
+        <div class="two-up">
+          <section>
+            <h2>{t('about.roles')}</h2>
+            <ul class="plain">
+              <li>{t('about.role.1')}</li>
+              <li>{t('about.role.2')}</li>
+              <li>{t('about.role.3')}</li>
+            </ul>
+          </section>
+          <section>
+            <h2>{t('about.topics')}</h2>
+            <ul class="plain">
+              <li>{t('about.topic.1')}</li>
+              <li>{t('about.topic.2')}</li>
+              <li>{t('about.topic.3')}</li>
+              <li>{t('about.topic.4')}</li>
+              <li>{t('about.topic.5')}</li>
+            </ul>
+          </section>
+        </div>
+        <p>
+          {t('about.links.before')}<a href={site.github}>{t('about.links.github')}</a>{t('about.links.middle')}<a href={localizePath('/blog/articles', lang)}>{t('about.links.blog')}</a>{t('about.links.after')}
+        </p>
       </div>
-      <p>
-        {t('about.links.before')}<a href={site.github}>{t('about.links.github')}</a>{t('about.links.middle')}<a href={localizePath('/blog/articles', lang)}>{t('about.links.blog')}</a>{t('about.links.after')}
-      </p>
     </div>
     <NvimBar kind="status" path="~/about.md" lang={lang} />
   </div>
 </Base>
+
+<style>
+  .about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(20rem, 38%);
+    grid-template-areas:
+      'lede portrait'
+      'rest portrait';
+    gap: 1.25rem 2.75rem;
+    align-items: start;
+  }
+  .lede { grid-area: lede; margin: 0; }
+  .about-rest { grid-area: rest; }
+  .about-portrait {
+    grid-area: portrait;
+    margin: 0;
+    position: sticky;
+    top: 5.5rem;
+  }
+  .about-portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius-sm);
+    background: #f3eee6;
+  }
+  @media (max-width: 720px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'lede'
+        'portrait'
+        'rest';
+    }
+    .about-portrait {
+      position: static;
+      max-width: 18rem;
+    }
+  }
+</style>
