@@ -61,8 +61,54 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* AstroNvim's `astrodark` (astrotheme palette: ui.* and syntax.*). */
+html[data-theme='astrodark'] {
+  color-scheme: dark;
+  --bg: #1a1d23;            /* ui.base */
+  --bg-elev: #16181d;       /* ui.tool */
+  --bg-card: #1e222a;       /* ui.current_line */
+  --rule: #23272f;          /* ui.highlight */
+  --rule-strong: #3a3e47;   /* ui.border */
+  --text: #adb0bb;          /* syntax.text */
+  --brush: #e0e0ee;         /* ui.text_match */
+  --muted: #797d87;         /* ui.winbar */
+  --h3: #e0e0ee;
+  --quote: #9b9fa9;         /* ui.text */
+  --nv-blue: #5eb7ff;       /* syntax.blue */
+  --nv-cyan: #50a4e9;       /* ui.accent */
+  --nv-teal: #4ac2b8;       /* syntax.cyan */
+  --nv-purple: #dd97f1;     /* syntax.purple */
+  --nv-magenta: #ff838b;    /* syntax.red */
+  --nv-green: #87c05f;      /* syntax.green */
+  --nv-orange: #f5983a;     /* syntax.orange */
+  --nv-yellow: #dfab25;     /* syntax.yellow */
+  --nv-red: #f8747e;        /* ui.red */
+  --nv-comment: #696c76;    /* syntax.comment */
+  --nv-gutter: #3a3e47;     /* LineNr = ui.none_text */
+  --bg-rgb: 26 29 35;
+  --accent-rgb: 80 164 233;
+  --purple-rgb: 221 151 241;
+  --glow-1: rgb(221 151 241 / 0.05);
+  --glow-2: rgb(80 164 233 / 0.06);
+  --code-bg: #16181d;
+  --tab-bg: #111317;        /* ui.tabline */
+  --tab-fg: #797d87;
+  --tab-sel-bg: #1a1d23;    /* TabLineSel: base, bold italic */
+  --tab-sel-fg: #adb0bb;
+  --tab-sel-style: italic;
+  --status-bg: #111317;     /* ui.statusline */
+  --status-fg: #9b9fa9;
+  --status-file: #adb0bb;
+  --mode-bg: #50a4e9;
+  --mode-fg: #1a1d23;
+  --status-accent: #50a4e9;
+  --selection: #26343f;     /* ui.selection */
+  --hero-art-opacity: .85;
+  --nv-glow: 0 0 14px rgb(var(--accent-rgb) / 0.22);
+}
+
 /* Light: Vim's `peachpuff` colorscheme. */
-html[data-theme='light'] {
+html[data-theme='peachpuff'] {
   color-scheme: light;
   --bg: #ffdab9;            /* Normal bg */
   --bg-elev: #ffe3c9;

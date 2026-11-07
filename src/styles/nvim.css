@@ -13,7 +13,7 @@
 .nv-tabline, .nv-statusline { display: flex; align-items: stretch; font-size: .78rem; line-height: 1; border: 1px solid var(--rule-strong); border-radius: var(--radius-sm); overflow: hidden; }
 .nv-tabline { margin-bottom: .5rem; background: var(--tab-bg); }
 .nv-tab { display: inline-flex; align-items: center; gap: .5rem; padding: .6rem .9rem; color: var(--tab-fg); border-right: 1px solid var(--rule-strong); }
-.nv-tab.active { color: var(--tab-sel-fg); background: var(--tab-sel-bg); font-weight: 600; box-shadow: inset 0 -2px 0 var(--nv-cyan); }
+.nv-tab.active { color: var(--tab-sel-fg); background: var(--tab-sel-bg); font-weight: 600; font-style: var(--tab-sel-style, normal); box-shadow: inset 0 -2px 0 var(--nv-cyan); }
 .nv-tab-n { color: var(--nv-comment); }
 .nv-tab-fill, .nv-fill { flex: 1; background: repeating-linear-gradient(90deg, transparent 0 7px, rgb(var(--ink-rgb) / 0.025) 7px 8px); }
 .nv-tab-right { display: inline-flex; align-items: center; padding: .6rem .9rem; color: var(--nv-comment); border-left: 1px solid var(--rule-strong); }
@@ -152,11 +152,18 @@
 .nv-prose pre.astro-code .line:hover { background: rgb(var(--accent-rgb) / 0.04); }
 .nv-prose pre.astro-code .line:hover::before { color: var(--nv-cyan); }
 
-/* light mode: Shiki emits the peachpuff token colours as --shiki-light* variables */
-html[data-theme='light'] .astro-code,
-html[data-theme='light'] .astro-code span {
-  color: var(--shiki-light) !important;
-  font-style: var(--shiki-light-font-style) !important;
-  font-weight: var(--shiki-light-font-weight) !important;
-  text-decoration: var(--shiki-light-text-decoration) !important;
+/* Shiki inlines the nvim colours and emits the others as --shiki-<theme>* variables */
+html[data-theme='astrodark'] .astro-code,
+html[data-theme='astrodark'] .astro-code span {
+  color: var(--shiki-astrodark) !important;
+  font-style: var(--shiki-astrodark-font-style) !important;
+  font-weight: var(--shiki-astrodark-font-weight) !important;
+  text-decoration: var(--shiki-astrodark-text-decoration) !important;
+}
+html[data-theme='peachpuff'] .astro-code,
+html[data-theme='peachpuff'] .astro-code span {
+  color: var(--shiki-peachpuff) !important;
+  font-style: var(--shiki-peachpuff-font-style) !important;
+  font-weight: var(--shiki-peachpuff-font-weight) !important;
+  text-decoration: var(--shiki-peachpuff-text-decoration) !important;
 }

@@ -81,26 +81,34 @@ main { padding-bottom: 4rem; }
 .more { margin-top: 1rem; font-size: .85rem; }
 .more a { text-decoration: none; }
 
-/* theme switch: knob slides from the moon (dark) to the sun (light) */
-.theme-switch {
-  --ts-w: 3.6rem; --ts-h: 1.95rem;
-  position: relative; display: inline-flex; align-items: center; justify-content: space-between; flex: none;
-  width: var(--ts-w); height: var(--ts-h); padding: 0 .45rem; border-radius: 999px; cursor: pointer;
-  border: 1px solid var(--rule-strong); background: var(--bg-elev); color: var(--muted);
-  transition: border-color .2s var(--ease);
+/* theme picker: one swatch per colorscheme (background / accent), a ring marks the active one */
+.theme-picker {
+  --tp-size: 1.6rem; --tp-gap: 2px;
+  position: relative; display: inline-flex; gap: var(--tp-gap); flex: none; padding: 3px;
+  border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--bg-elev);
 }
-.theme-switch:hover { border-color: var(--accent); }
-.theme-switch svg { position: relative; z-index: 1; width: .9rem; height: .9rem; transition: color .3s var(--ease); }
-.ts-knob {
-  position: absolute; top: 3px; left: 3px; width: calc(var(--ts-h) - 8px); height: calc(var(--ts-h) - 8px);
-  border-radius: 50%; background: var(--accent); box-shadow: var(--nv-glow);
+.theme-picker button {
+  position: relative; z-index: 1; display: grid; place-items: center; width: var(--tp-size); height: var(--tp-size);
+  padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer;
+}
+.tp-swatch {
+  width: 1rem; height: 1rem; border-radius: 50%; border: 1px solid rgb(var(--ink-rgb) / 0.25);
+  background: linear-gradient(135deg, var(--sw-bg) 50%, var(--sw-accent) 50%);
+  transition: transform .2s var(--ease);
+}
+.theme-picker button:hover .tp-swatch { transform: scale(1.15); }
+.tp-swatch.nvim { --sw-bg: #07090f; --sw-accent: #7dcfff; }
+.tp-swatch.astrodark { --sw-bg: #1a1d23; --sw-accent: #50a4e9; }
+.tp-swatch.peachpuff { --sw-bg: #ffdab9; --sw-accent: #c00058; }
+.tp-ring {
+  position: absolute; top: 3px; left: 3px; width: var(--tp-size); height: var(--tp-size);
+  border-radius: 50%; border: 2px solid var(--accent); box-shadow: var(--nv-glow);
   transition: transform .4s cubic-bezier(.65, 0, .35, 1);
 }
-.theme-switch .ts-moon, .theme-switch[aria-checked='true'] .ts-sun { color: var(--bg); }
-.theme-switch[aria-checked='true'] .ts-moon { color: var(--muted); }
-.theme-switch[aria-checked='true'] .ts-knob { transform: translateX(calc(var(--ts-w) - var(--ts-h))); }
+html[data-theme='astrodark'] .tp-ring { transform: translateX(calc(var(--tp-size) + var(--tp-gap))); }
+html[data-theme='peachpuff'] .tp-ring { transform: translateX(calc(2 * (var(--tp-size) + var(--tp-gap)))); }
 
 /* cross-fade colours while the theme changes */
-html.theming, html.theming *:not(.ts-knob) {
+html.theming, html.theming *:not(.tp-ring) {
   transition: background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), fill .35s var(--ease) !important;
 }

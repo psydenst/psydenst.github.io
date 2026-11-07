@@ -39,10 +39,15 @@ Every route exists in English (no prefix) and Portuguese (`/pt/...`). The EN/PT 
 
 The whole site uses a Neovim-flavoured look: tabline and statusline on every page, blinking cursor in titles, faint HUD grid. The home hero keeps the painting, faded into the canvas. Posts get an outline sidebar that highlights the current section, `##`-prefixed headings, highlighted bold phrases, responsive tables and video embeds, and code blocks with a line-number gutter.
 
-- **Dark (default):** Tokyo Night-style palette (`:root` in `tokens.css`, `shikiTheme` for code).
-- **Light:** Vim's `peachpuff` colorscheme (`html[data-theme='light']` in `tokens.css`, `peachpuffTheme` for code): peach background, black text, black statusline, red line numbers.
+Three colorschemes, each with a matching code-highlighting theme in `shiki-theme.mjs`:
 
-The switch at the far right of the header toggles `data-theme="light"` on `<html>` and stores the choice in `localStorage`; an inline script in `Base.astro` applies it before first paint.
+| Theme | Selector in `tokens.css` | Code theme | Look |
+|---|---|---|---|
+| `nvim` (default) | `:root` | `shikiTheme` | Tokyo Night-style blue-black, neon cyan accent |
+| `astrodark` | `html[data-theme='astrodark']` | `astrodarkTheme` | AstroNvim's default (astrotheme palette): flat `#1a1d23`, blue `#50a4e9` accent |
+| `peachpuff` | `html[data-theme='peachpuff']` | `peachpuffTheme` | Vim's peachpuff: peach background, black text, black statusline, red line numbers |
+
+The picker at the far right of the header sets `data-theme` on `<html>` and stores the choice in `localStorage`; an inline script in `Base.astro` applies it before first paint.
 
 ## Posts
 

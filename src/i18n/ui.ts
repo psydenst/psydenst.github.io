@@ -14,7 +14,7 @@ export const ui = {
     'lang.label': 'Language',
     'lang.en': 'English',
     'lang.pt': 'Português',
-    'theme.light': 'Light mode',
+    'theme.label': 'Theme',
 
     'site.title': 'psydenst: blog',
     'site.description':
@@ -90,7 +90,7 @@ export const ui = {
     'lang.label': 'Idioma',
     'lang.en': 'English',
     'lang.pt': 'Português',
-    'theme.light': 'Modo claro',
+    'theme.label': 'Tema',
 
     'site.title': 'psydenst: blog',
     'site.description':

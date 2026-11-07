@@ -38,6 +38,38 @@ export const shikiTheme = {
   ],
 };
 
+// AstroNvim's `astrodark` (astrotheme): syntax palette and treesitter mapping.
+export const astrodarkTheme = {
+  name: 'astrodark',
+  type: 'dark',
+  colors: {
+    'editor.background': '#16181d',
+    'editor.foreground': '#adb0bb',
+  },
+  settings: [
+    { settings: { background: '#16181d', foreground: '#adb0bb' } },
+    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#696c76', fontStyle: 'italic' } },
+    { scope: ['string', 'punctuation.definition.string', 'string.template'], settings: { foreground: '#87c05f' } },
+    { scope: ['constant.numeric', 'constant.language'], settings: { foreground: '#f5983a' } },
+    { scope: ['constant', 'constant.other', 'constant.character', 'support.constant'], settings: { foreground: '#dfab25' } },
+    { scope: ['keyword', 'keyword.control', 'storage.modifier', 'keyword.operator.new', 'keyword.control.import', 'entity.name.namespace'], settings: { foreground: '#dd97f1' } },
+    { scope: ['entity.name.function', 'support.function', 'meta.function-call.generic', 'entity.name.type', 'support.type', 'storage.type', 'entity.name.class', 'support.class'], settings: { foreground: '#5eb7ff' } },
+    { scope: ['support.type.builtin', 'support.type.primitive', 'entity.other.attribute', 'meta.decorator', 'meta.preprocessor'], settings: { foreground: '#dfab25' } },
+    { scope: ['variable.other.property', 'support.variable.property', 'variable.other.object.property', 'support.type.property-name', 'meta.object-literal.key', 'entity.name.tag'], settings: { foreground: '#ff838b' } },
+    { scope: ['variable.parameter', 'meta.parameter'], settings: { foreground: '#f5983a' } },
+    { scope: ['variable.language', 'support.function.builtin', 'entity.other.attribute-name', 'markup.underline.link'], settings: { foreground: '#4ac2b8' } },
+    { scope: ['constant.character.escape'], settings: { foreground: '#ff838b' } },
+    { scope: ['punctuation', 'meta.brace', 'keyword.operator'], settings: { foreground: '#adb0bb' } },
+    { scope: ['entity.name.section', 'markup.heading'], settings: { foreground: '#adb0bb', fontStyle: 'bold' } },
+    { scope: ['markup.bold'], settings: { fontStyle: 'bold' } },
+    { scope: ['markup.italic'], settings: { fontStyle: 'italic' } },
+    { scope: ['markup.inserted'], settings: { foreground: '#87c05f' } },
+    { scope: ['markup.deleted'], settings: { foreground: '#ff838b' } },
+    { scope: ['invalid', 'invalid.illegal'], settings: { foreground: '#f8747e' } },
+    { scope: ['source.shell variable.other', 'support.function.builtin.shell'], settings: { foreground: '#4ac2b8' } },
+  ],
+};
+
 // Light mode: Vim's `peachpuff` colorscheme (Normal, Comment, Constant,
 // Identifier, Statement, PreProc, Type, Special, Title groups).
 export const peachpuffTheme = {
