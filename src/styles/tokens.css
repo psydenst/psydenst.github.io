@@ -1,4 +1,4 @@
-/* Dark (default): Neovim-style deep blue-black, Tokyo Night palette. */
+/* Base palette, used by `nvim`: Neovim-style deep blue-black, Tokyo Night. Other themes override it via data-theme. */
 :root {
   color-scheme: dark;
   --bg: #07090f;

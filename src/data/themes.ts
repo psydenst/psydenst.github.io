@@ -5,7 +5,7 @@ type Theme = { name: string; planet: string; label: Record<Lang, string>; color:
 /**
  * Colorschemes, drawn as planets in the header orrery (innermost orbit first).
  * `color` is the page background, used for the theme-color meta tag.
- * The default (`nvim`) is the only one without a `data-theme` attribute.
+ * The active theme is always set as `data-theme` on <html>; `:root` in tokens.css holds the base (nvim) palette.
  */
 export const themes = [
   { name: 'vim', planet: 'mercury', label: { en: 'Mercury', pt: 'Mercúrio' }, color: '#000000' },
@@ -17,4 +17,4 @@ export const themes = [
   { name: 'astrodark', planet: 'neptune', label: { en: 'Neptune', pt: 'Netuno' }, color: '#1a1d23' },
 ] as const satisfies readonly Theme[];
 
-export const defaultTheme = 'nvim';
+export const defaultTheme = 'elflord';

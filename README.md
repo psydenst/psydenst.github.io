@@ -1,6 +1,6 @@
 # psydenst.github.io
 
-Personal blog of **psydenst**. Static site built with [Astro](https://astro.build), dark by default with a light mode, bilingual (English default, Portuguese at `/pt/`). The hero artwork lives in `public/artwork/hero.webp`.
+Personal blog of **psydenst**. Static site built with [Astro](https://astro.build), seven colorschemes (Vim's elflord by default), bilingual (English default, Portuguese at `/pt/`). The hero artwork lives in `public/artwork/hero.webp`.
 
 ## Run locally
 
@@ -45,13 +45,13 @@ Seven colorschemes, each a planet in the header's theme switch (innermost orbit 
 |---|---|---|---|
 | Mercury | `vim` | `vimTheme` | Vim's built-in dark colors: black, yellow statements and line numbers |
 | Venus | `peachpuff` | `peachpuffTheme` | Vim's peachpuff (light): peach background, black text, black statusline |
-| Earth | `nvim` (default) | `shikiTheme` | Tokyo Night-style blue-black, neon cyan accent |
+| Earth | `nvim` | `shikiTheme` | Tokyo Night-style blue-black, neon cyan accent |
 | Mars | `rose-pine-moon` | Shiki's `rose-pine-moon` | Rosé Pine Moon: purple base, rose accent, iris and gold |
 | Saturn | `kanagawa-lotus` | Shiki's `kanagawa-lotus` | Kanagawa Lotus (light): cream paper, ink text, blue accent |
-| Uranus | `elflord` | `elflordTheme` | Vim's elflord: cyan on black, green types, red statements |
+| Uranus | `elflord` (default) | `elflordTheme` | Vim's elflord: cyan on black, green types, red statements |
 | Neptune | `astrodark` | `astrodarkTheme` | AstroNvim's astrodark: flat `#1a1d23`, blue `#50a4e9` accent |
 
-The list lives in `src/data/themes.ts`; palettes are `html[data-theme='<name>']` blocks in `tokens.css` (the default is `:root`), custom code themes are in `shiki-theme.mjs`, and planet looks, orbit angles and periods are in `layout.css`. Clicking the orbit icon at the far right of the header opens the orrery; planets drift slowly and pause on hover, and arrow keys move between them. The choice is stored in `localStorage` and an inline script in `Base.astro` applies it before first paint.
+The list and `defaultTheme` live in `src/data/themes.ts`; `Base.astro` renders the default as `data-theme` on `<html>`. Palettes are `html[data-theme='<name>']` blocks in `tokens.css` over the base `:root` palette (which is nvim's), custom code themes are in `shiki-theme.mjs`, and planet looks, orbit angles and periods are in `layout.css`. Clicking the orbit icon at the far right of the header opens the orrery; planets drift slowly and pause on hover, and arrow keys move between them. The choice is stored in `localStorage` and an inline script in `Base.astro` applies it before first paint.
 
 ## Posts
 
