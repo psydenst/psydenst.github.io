@@ -1,13 +1,19 @@
 .site-header, main, .site-footer { position: relative; z-index: 1; }
 
-/* header */
+/* header: transparent at the top, frosted once scrolled, slides away while scrolling down */
+:root { --header-h: 4rem; }
 .site-header {
   position: sticky; top: 0; z-index: 5;
+  background: transparent; border-bottom: 1px solid transparent;
+  transition: transform .3s var(--ease), background-color .3s var(--ease), border-color .3s var(--ease);
+}
+.site-header.scrolled {
   background: color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter: saturate(140%) blur(12px); -webkit-backdrop-filter: saturate(140%) blur(12px);
-  border-bottom: 1px solid var(--rule);
+  border-bottom-color: var(--rule);
 }
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: .85rem; }
+.site-header.hidden { transform: translateY(-100%); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: var(--header-h); padding-block: 0; }
 .brand { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--brush) !important; text-decoration: none; letter-spacing: -0.02em; }
 .brand span, .footer-brand .dot { color: var(--accent); }
 .nav { margin-left: auto; }
@@ -51,12 +57,13 @@ main { padding-bottom: 4rem; }
 .site-footer a:hover { color: var(--accent); }
 
 /* hero: the painting, faded into the editor canvas */
-.hero { position: relative; min-height: min(86vh, 46rem); display: flex; align-items: flex-end; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.hero { position: relative; margin-top: calc(-1 * var(--header-h)); min-height: min(92vh, 50rem); display: flex; align-items: flex-end; overflow: hidden; }
 .hero-art { position: absolute; inset: 0; background: url('/artwork/hero.webp') center 35% / cover no-repeat; opacity: .95; }
 .hero-art::after {
   content: ''; position: absolute; inset: 0;
   background:
     repeating-linear-gradient(0deg, rgba(7, 9, 15, 0.18) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, rgba(7, 9, 15, .75) 0, rgba(7, 9, 15, 0) 9rem),
     linear-gradient(90deg, rgba(7, 9, 15, .94) 0%, rgba(7, 9, 15, .72) 32%, rgba(7, 9, 15, .15) 62%, rgba(7, 9, 15, .05) 100%),
     linear-gradient(0deg, var(--bg) 0%, rgba(7, 9, 15, .6) 22%, rgba(7, 9, 15, 0) 55%);
 }

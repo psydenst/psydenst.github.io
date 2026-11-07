@@ -94,6 +94,20 @@ const ogImage = abs(image ?? '/og.png');
         btn.setAttribute('aria-expanded', String(open));
         document.body.classList.toggle('nav-open', open);
       });
+      const header = document.querySelector<HTMLElement>('.site-header');
+      if (header) {
+        let lastY = window.scrollY;
+        const onScroll = () => {
+          const y = window.scrollY;
+          header.classList.toggle('scrolled', y > 8);
+          if (Math.abs(y - lastY) < 6) return;
+          const down = y > lastY && y > header.offsetHeight;
+          header.classList.toggle('hidden', down && !nav?.classList.contains('open'));
+          lastY = y;
+        };
+        onScroll();
+        addEventListener('scroll', onScroll, { passive: true });
+      }
       document.querySelectorAll<HTMLAnchorElement>('.lang-switch a').forEach((a) => {
         a.addEventListener('click', () => {
           try { localStorage.setItem('lang', a.dataset.lang ?? 'en'); } catch {}
