@@ -99,13 +99,21 @@ const ogImage = abs(image ?? '/og.png');
         let lastY = window.scrollY;
         const onScroll = () => {
           const y = window.scrollY;
-          header.classList.toggle('scrolled', y > 8);
+          if (y <= 8) {
+            header.classList.remove('hidden', 'scrolled');
+            lastY = y;
+            return;
+          }
           if (Math.abs(y - lastY) < 6) return;
-          const down = y > lastY && y > header.offsetHeight;
-          header.classList.toggle('hidden', down && !nav?.classList.contains('open'));
+          if (y > lastY && !nav?.classList.contains('open')) {
+            header.classList.add('hidden');
+          } else {
+            header.classList.remove('hidden');
+            header.classList.add('scrolled');
+          }
           lastY = y;
         };
-        onScroll();
+        if (window.scrollY > 8) header.classList.add('scrolled');
         addEventListener('scroll', onScroll, { passive: true });
       }
       document.querySelectorAll<HTMLAnchorElement>('.lang-switch a').forEach((a) => {
