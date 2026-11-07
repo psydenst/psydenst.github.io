@@ -4,6 +4,7 @@ export const site = {
   name: 'psydenst',
   handle: 'psydenst',
   github: 'https://github.com/psydenst',
+  linkedin: 'https://www.linkedin.com/in/pedrosydenstricker/',
   nymAuthor: {
     en: 'https://nym.com/blog/author/pedro-sydenstricker',
     pt: 'https://nym.com/pt/blog/author/pedro-sydenstricker',

@@ -6,20 +6,21 @@ export const ui = {
   en: {
     'nav.home': 'Home',
     'nav.about': 'About',
-    'nav.portfolio': 'Portfolio',
     'nav.blog': 'Blog',
+    'nav.linkedin': 'LinkedIn',
     'nav.menu': 'Menu',
     'nav.main': 'Main',
     'a11y.skip': 'Skip to content',
     'lang.label': 'Language',
     'lang.en': 'English',
     'lang.pt': 'Português',
+    'theme.light': 'Light mode',
 
-    'site.title': 'psydenst: portfolio and blog',
+    'site.title': 'psydenst: blog',
     'site.description':
-      'Portfolio and blog of psydenst: software development, DevOps, cybersecurity, digital privacy, and technology and society.',
+      'Blog of psydenst: DevOps, infrastructure as code, cybersecurity, digital privacy, blockchain, and technology and society.',
 
-    'home.eyebrow': 'Portfolio · Blog',
+    'home.eyebrow': 'DevOps · Privacy · Blog',
     'home.lede': 'DevOps and Software Engineer; I write about privacy, blockchain, IaC, cybersecurity, and society.',
     'home.cta.blog': 'Read the blog',
     'home.cta.about': 'About me',
@@ -49,15 +50,6 @@ export const ui = {
     'about.links.blog': 'blog',
     'about.links.after': '.',
 
-    'portfolio.title': 'Portfolio',
-    'portfolio.heading': 'Selected work',
-    'portfolio.description': 'Selected public work by psydenst.',
-    'portfolio.empty.before': 'Nothing listed here yet. Meanwhile, see my ',
-    'portfolio.empty.github': 'GitHub',
-    'portfolio.empty.middle': ' and the ',
-    'portfolio.empty.blog': 'blog',
-    'portfolio.empty.after': '.',
-    'portfolio.open': 'Open',
 
     'blog.title': 'Blog',
     'blog.description': 'Technical studies, reading notes, comments, and articles by psydenst.',
@@ -90,20 +82,21 @@ export const ui = {
   pt: {
     'nav.home': 'Início',
     'nav.about': 'Sobre',
-    'nav.portfolio': 'Portfólio',
     'nav.blog': 'Blog',
+    'nav.linkedin': 'LinkedIn',
     'nav.menu': 'Menu',
     'nav.main': 'Principal',
     'a11y.skip': 'Pular para o conteúdo',
     'lang.label': 'Idioma',
     'lang.en': 'English',
     'lang.pt': 'Português',
+    'theme.light': 'Modo claro',
 
-    'site.title': 'psydenst: portfólio e blog',
+    'site.title': 'psydenst: blog',
     'site.description':
-      'Portfólio e blog de psydenst: desenvolvimento de software, DevOps, cibersegurança, privacidade digital e tecnologia e sociedade.',
+      'Blog de psydenst: DevOps, infraestrutura como código, cibersegurança, privacidade digital, blockchain e tecnologia e sociedade.',
 
-    'home.eyebrow': 'Portfólio · Blog',
+    'home.eyebrow': 'DevOps · Privacidade · Blog',
     'home.lede': 'DevOps e Software Engineer; escrevo sobre privacidade, blockchain, IaC, cibersegurança e sociedade.',
     'home.cta.blog': 'Ler o blog',
     'home.cta.about': 'Sobre mim',
@@ -133,15 +126,6 @@ export const ui = {
     'about.links.blog': 'blog',
     'about.links.after': '.',
 
-    'portfolio.title': 'Portfólio',
-    'portfolio.heading': 'Trabalhos selecionados',
-    'portfolio.description': 'Trabalhos públicos selecionados de psydenst.',
-    'portfolio.empty.before': 'Nada listado por aqui ainda. Enquanto isso, veja meu ',
-    'portfolio.empty.github': 'GitHub',
-    'portfolio.empty.middle': ' e o ',
-    'portfolio.empty.blog': 'blog',
-    'portfolio.empty.after': '.',
-    'portfolio.open': 'Abrir',
 
     'blog.title': 'Blog',
     'blog.description': 'Estudos técnicos, fichamentos, comentários e artigos de psydenst.',

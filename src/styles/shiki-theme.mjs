@@ -37,3 +37,31 @@ export const shikiTheme = {
     { scope: ['punctuation.definition.variable', 'variable.other.readwrite.shell'], settings: { foreground: '#c0caf5' } },
   ],
 };
+
+// Light mode: Vim's `peachpuff` colorscheme (Normal, Comment, Constant,
+// Identifier, Statement, PreProc, Type, Special, Title groups).
+export const peachpuffTheme = {
+  name: 'peachpuff',
+  type: 'light',
+  colors: {
+    'editor.background': '#ffdab9',
+    'editor.foreground': '#000000',
+  },
+  settings: [
+    { settings: { background: '#ffdab9', foreground: '#000000' } },
+    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#406090' } },
+    { scope: ['string', 'punctuation.definition.string', 'string.template', 'constant', 'constant.numeric', 'constant.language', 'constant.character', 'constant.other'], settings: { foreground: '#c00058' } },
+    { scope: ['keyword', 'keyword.control', 'keyword.operator.new', 'storage.modifier'], settings: { foreground: '#a52a2a', fontStyle: 'bold' } },
+    { scope: ['entity.name.function', 'support.function', 'meta.function-call.generic', 'variable.other.property', 'support.type.property-name', 'meta.object-literal.key'], settings: { foreground: '#008b8b' } },
+    { scope: ['storage.type', 'entity.name.type', 'entity.name.class', 'support.type', 'support.class', 'entity.other.inherited-class'], settings: { foreground: '#2e8b57', fontStyle: 'bold' } },
+    { scope: ['meta.preprocessor', 'keyword.control.directive', 'keyword.control.import', 'entity.name.function.preprocessor', 'entity.name.tag'], settings: { foreground: '#cd00cd' } },
+    { scope: ['constant.character.escape', 'string.regexp', 'entity.other.attribute-name', 'punctuation.definition.template-expression', 'string.other.link', 'variable.parameter'], settings: { foreground: '#6a5acd' } },
+    { scope: ['entity.name.section', 'markup.heading'], settings: { foreground: '#cd00cd', fontStyle: 'bold' } },
+    { scope: ['markup.bold'], settings: { fontStyle: 'bold' } },
+    { scope: ['markup.italic'], settings: { fontStyle: 'italic' } },
+    { scope: ['markup.inserted'], settings: { foreground: '#2e8b57' } },
+    { scope: ['markup.deleted'], settings: { foreground: '#cd0000' } },
+    { scope: ['invalid', 'invalid.illegal'], settings: { foreground: '#ff0000' } },
+    { scope: ['source.shell variable.other', 'support.function.builtin.shell'], settings: { foreground: '#008b8b' } },
+  ],
+};

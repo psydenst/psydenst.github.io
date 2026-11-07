@@ -1,6 +1,6 @@
 # psydenst.github.io
 
-Personal portfolio and blog of **psydenst**. Static site built with [Astro](https://astro.build), dark mode only, bilingual (English default, Portuguese at `/pt/`). The hero artwork lives in `public/artwork/hero.webp`.
+Personal blog of **psydenst**. Static site built with [Astro](https://astro.build), dark by default with a light mode, bilingual (English default, Portuguese at `/pt/`). The hero artwork lives in `public/artwork/hero.webp`.
 
 ## Run locally
 
@@ -21,7 +21,7 @@ Every route exists in English (no prefix) and Portuguese (`/pt/...`). The EN/PT 
 |---|---|
 | `/` · `/pt/` | Home |
 | `/about` | About |
-| `/portfolio` | Portfolio (data: `src/data/portfolio.ts`) |
+| `/portfolio` | Redirects to LinkedIn (`redirects` in `astro.config.mjs`) |
 | `/blog` | All posts, with section filter |
 | `/blog/technical-studies`, `/blog/fichamentos`, `/blog/comments`, `/blog/articles` | Section pages ("Reading notes" is the English label of `fichamentos`) |
 | `/blog/tags/<tag>/` | Topic page: every post with that tag (e.g. `/blog/tags/privacy/`) |
@@ -33,11 +33,16 @@ Every route exists in English (no prefix) and Portuguese (`/pt/...`). The EN/PT 
 - `src/i18n/ui.ts` – all UI strings, per language. `src/i18n/utils.ts` – `getLangFromUrl`, `useTranslations`, `localizePath`, `formatDate`.
 - `src/lib.ts` – post queries (`getPosts`, `postUrl`, static paths, reading time).
 - `src/data/site.ts` – blog sections (labels in both languages), GitHub and Nym links.
-- `src/styles/` – `tokens.css` (palette), `global.css`, `layout.css` (header, hero, footer, cards), and `nvim.css` (editor chrome and the article reader). `shiki-theme.mjs` is the code-highlighting palette.
+- `src/styles/` – `tokens.css` (both palettes), `global.css`, `layout.css` (header, hero, footer, theme switch), and `nvim.css` (editor chrome and the article reader). `shiki-theme.mjs` holds the two code-highlighting themes.
 
 ## Theme
 
-The whole site uses a Neovim-flavoured sci-fi dark theme: Tokyo Night-style palette, faint HUD grid, tabline and statusline on every page, blinking cursor in titles. The home hero keeps the painting, faded into the canvas. Posts get an outline sidebar, `##`-prefixed headings, highlighted bold phrases, responsive tables and video embeds, and code blocks with a line-number gutter (`src/styles/shiki-theme.mjs`).
+The whole site uses a Neovim-flavoured look: tabline and statusline on every page, blinking cursor in titles, faint HUD grid. The home hero keeps the painting, faded into the canvas. Posts get an outline sidebar that highlights the current section, `##`-prefixed headings, highlighted bold phrases, responsive tables and video embeds, and code blocks with a line-number gutter.
+
+- **Dark (default):** Tokyo Night-style palette (`:root` in `tokens.css`, `shikiTheme` for code).
+- **Light:** Vim's `peachpuff` colorscheme (`html[data-theme='light']` in `tokens.css`, `peachpuffTheme` for code): peach background, black text, black statusline, red line numbers.
+
+The switch at the far right of the header toggles `data-theme="light"` on `<html>` and stores the choice in `localStorage`; an inline script in `Base.astro` applies it before first paint.
 
 ## Posts
 
