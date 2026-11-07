@@ -18,7 +18,9 @@ Este fichamento acompanha, na ordem, as divisões das notas de leitura. A pagina
 
 O ponto de partida é o caráter declarativo do Terraform: descrevemos o que queremos, em vez de escrever diretamente a sequência de operações para obtê-lo. A promessa de uma linguagem comum a diferentes providers não elimina, porém, as condições de realização dessa descrição. As notas destacam a dependência circular entre recursos: se cada um depende do outro para existir, o Terraform não consegue criá-los sem algum contorno manual.
 
-Parece importante conservar essa tensão. Declarar o resultado não significa que qualquer conjunto de declarações seja executável. As dependências também fazem parte do problema. O item “Diagram:” está vazio na impressão: diagrama ausente, continuar na leitura.
+Parece importante conservar essa tensão. Declarar o resultado não significa que qualquer conjunto de declarações seja executável. As dependências também fazem parte do problema. As notas incluem o diagrama a seguir nesse ponto: módulos de um deployment alcançam o Core pela CLI, depois providers, APIs públicas e recursos do vendor, enquanto o state permanece no backend.
+
+![Visão geral do Terraform: módulos de um deployment alcançam o Core na CLI, depois providers, APIs públicas e recursos do vendor. O state fica no backend.](/blog/terraform-in-depth/overview.webp)
 
 ## tf CLI
 
@@ -26,7 +28,11 @@ A CLI aparece como o ponto de acesso à criação, atualização e destruição 
 
 ## Providers
 
-O provider faz a interface entre Terraform e os sistemas de um vendor. A comunicação com o Terraform ocorre por gRPC. As notas indicam uma relação tendencialmente um a um entre provider e plataforma, mas preservamos o “tendencialmente”: não se trata aqui de uma identidade necessária.
+O provider faz a interface entre Terraform e os sistemas de um vendor. A comunicação com o Terraform ocorre por gRPC.
+
+![O Terraform Core comunica-se com o provider por gRPC; o provider fala com o vendor por uma API.](/blog/terraform-in-depth/core-provider-vendor.webp)
+
+As notas indicam uma relação tendencialmente um a um entre provider e plataforma, mas preservamos o “tendencialmente”: não se trata aqui de uma identidade necessária.
 
 Cada provider possui nomenclatura, estilo e documentação próprios. A linguagem comum, portanto, não dispensa a leitura da documentação particular. Ela unifica a forma de declarar, sem tornar iguais os objetos declarados.
 
@@ -44,7 +50,9 @@ As notas descrevem o workspace como um deployment de uma base de código Terrafo
 
 ## Deployment flow
 
-A seção está presente, mas sua figura não veio na impressão. Não reconstruímos o desenho de memória. Deployment flow: figura ausente, continuar na leitura. As três seções seguintes preservam o encadeamento textual disponível.
+As notas representam esse ciclo como um loop: uma mudança desejada passa por init, plan e review; o review pode voltar à mudança desejada ou seguir para o apply, que então retorna a uma nova mudança desejada.
+
+![Fluxo de deployment: uma mudança desejada passa por init, plan e review; o review pode voltar à mudança desejada ou seguir para o apply, que então retorna a uma nova mudança desejada.](/blog/terraform-in-depth/deployment-flow.webp)
 
 ## Init
 
@@ -56,7 +64,9 @@ O comando `terraform plan` calcula um plano que poderá ser usado no apply. As n
 
 DAG significa grafo direcionado acíclico: as relações de dependência orientam a ordem possível das ações, sem ciclos. Retorna aqui a dificuldade registrada no início. O planejamento não é uma simples lista indiferente à ordem, mas uma organização das mudanças segundo suas dependências.
 
-As notas mencionam `terraform graph` e anunciam uma figura. A figura não está disponível na impressão; não é possível comentá-la como se estivesse diante de nós. Continuar na leitura.
+As notas mencionam `terraform graph` e incluem este exemplo de grafo do plan, da raiz até um recurso `aws_instance.web` e data sources relacionados, e daí ao provider da AWS.
+
+![Exemplo de terraform graph, da raiz até um recurso aws_instance.web e data sources relacionados, e daí ao provider da AWS.](/blog/terraform-in-depth/plan-graph.webp)
 
 ## Apply
 

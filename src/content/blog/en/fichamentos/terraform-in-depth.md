@@ -18,7 +18,9 @@ This reading note follows the divisions of the original notes in sequence. Book 
 
 The starting point is Terraform's declarative character: we describe what we want instead of directly writing the sequence of operations that would produce it. The promise of a common language across providers does not, however, remove the conditions under which that description can be realized. The notes emphasize circular dependencies between resources: if each depends on the other in order to exist, Terraform cannot create them without a manual workaround.
 
-It seems important to retain this tension. Declaring a result does not mean that every collection of declarations is executable. Dependencies are part of the problem too. The item “Diagram:” is empty in the print: diagram missing, to be continued from the book.
+It seems important to retain this tension. Declaring a result does not mean that every collection of declarations is executable. Dependencies are part of the problem too. The notes place the following diagram under that heading: modules in a deployment reach Core through the CLI, then providers, public APIs, and vendor resources, while state is retained in the backend.
+
+![Terraform overview: modules in a deployment reach Core in the Terraform CLI, then providers, public APIs, and vendor resources. State lives in the backend.](/blog/terraform-in-depth/overview.webp)
 
 ## tf CLI
 
@@ -26,7 +28,11 @@ The CLI appears as the entry point for creating, updating, and destroying infras
 
 ## Providers
 
-A provider interfaces between Terraform and a vendor's systems. Communication with Terraform occurs over gRPC. The notes describe a tendency toward a one-to-one relationship between provider and platform, but we retain “tendency”: this is not presented as a necessary identity.
+A provider interfaces between Terraform and a vendor's systems. Communication with Terraform occurs over gRPC.
+
+![Terraform Core communicates with a provider over gRPC; the provider talks to the vendor over an API.](/blog/terraform-in-depth/core-provider-vendor.webp)
+
+The notes describe a tendency toward a one-to-one relationship between provider and platform, but we retain “tendency”: this is not presented as a necessary identity.
 
 Each provider has its own nomenclature, style, and documentation. A common language does not remove the need to read that particular documentation. It unifies the form of declaration without making the declared objects identical.
 
@@ -44,7 +50,9 @@ The notes describe a workspace as a deployment of a Terraform codebase with a pa
 
 ## Deployment flow
 
-The section is present, but its figure did not survive the print. We do not reconstruct the drawing from memory. Deployment flow: figure missing, to be continued from the book. The next three sections retain the available textual sequence.
+The notes represent that cycle as a loop: a desired change moves through init, plan, and review; review may return to the desired change or continue to apply, which then returns to a new desired change.
+
+![Deployment flow: a desired change goes through init, plan, and review; review can return to the desired change or continue to apply, which then returns to a new desired change.](/blog/terraform-in-depth/deployment-flow.webp)
 
 ## Init
 
@@ -56,7 +64,9 @@ The `terraform plan` command calculates a plan that can be used during apply. Th
 
 DAG means directed acyclic graph: dependency relations orient the possible order of actions without cycles. The difficulty recorded at the beginning returns here. Planning is not simply an order-indifferent list but an organization of changes according to their dependencies.
 
-The notes mention `terraform graph` and announce a figure. That figure is unavailable in the print; we cannot comment on it as though it were before us. To be continued from the book.
+The notes mention `terraform graph` and include this example of a plan graph, from root through an `aws_instance.web` resource and related data sources to the AWS provider.
+
+![Example terraform graph from root through an aws_instance.web resource and related data sources to the AWS provider.](/blog/terraform-in-depth/plan-graph.webp)
 
 ## Apply
 
