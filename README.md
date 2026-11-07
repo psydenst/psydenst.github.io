@@ -33,21 +33,25 @@ Every route exists in English (no prefix) and Portuguese (`/pt/...`). The EN/PT 
 - `src/i18n/ui.ts` – all UI strings, per language. `src/i18n/utils.ts` – `getLangFromUrl`, `useTranslations`, `localizePath`, `formatDate`.
 - `src/lib.ts` – post queries (`getPosts`, `postUrl`, static paths, reading time).
 - `src/data/site.ts` – blog sections (labels in both languages), GitHub and Nym links.
-- `src/styles/` – `tokens.css` (both palettes), `global.css`, `layout.css` (header, hero, footer, theme switch), and `nvim.css` (editor chrome and the article reader). `shiki-theme.mjs` holds the two code-highlighting themes.
+- `src/styles/` – `tokens.css` (all palettes), `global.css`, `layout.css` (header, hero, footer, theme switch), and `nvim.css` (editor chrome and the article reader). `shiki-theme.mjs` holds the custom code-highlighting themes.
 
 ## Theme
 
 The whole site uses a Neovim-flavoured look: tabline and statusline on every page, blinking cursor in titles, faint HUD grid. The home hero keeps the painting, faded into the canvas. Posts get an outline sidebar that highlights the current section, `##`-prefixed headings, highlighted bold phrases, responsive tables and video embeds, and code blocks with a line-number gutter.
 
-Three colorschemes, each with a matching code-highlighting theme in `shiki-theme.mjs`:
+Seven colorschemes, each a planet in the header's theme switch (innermost orbit first) and each with a matching code-highlighting theme:
 
-| Theme | Selector in `tokens.css` | Code theme | Look |
+| Planet | Theme | Code theme | Look |
 |---|---|---|---|
-| `nvim` (default) | `:root` | `shikiTheme` | Tokyo Night-style blue-black, neon cyan accent |
-| `astrodark` | `html[data-theme='astrodark']` | `astrodarkTheme` | AstroNvim's default (astrotheme palette): flat `#1a1d23`, blue `#50a4e9` accent |
-| `peachpuff` | `html[data-theme='peachpuff']` | `peachpuffTheme` | Vim's peachpuff: peach background, black text, black statusline, red line numbers |
+| Mercury | `vim` | `vimTheme` | Vim's built-in dark colors: black, yellow statements and line numbers |
+| Venus | `peachpuff` | `peachpuffTheme` | Vim's peachpuff (light): peach background, black text, black statusline |
+| Earth | `nvim` (default) | `shikiTheme` | Tokyo Night-style blue-black, neon cyan accent |
+| Mars | `rose-pine-moon` | Shiki's `rose-pine-moon` | Rosé Pine Moon: purple base, rose accent, iris and gold |
+| Saturn | `kanagawa-lotus` | Shiki's `kanagawa-lotus` | Kanagawa Lotus (light): cream paper, ink text, blue accent |
+| Uranus | `elflord` | `elflordTheme` | Vim's elflord: cyan on black, green types, red statements |
+| Neptune | `astrodark` | `astrodarkTheme` | AstroNvim's astrodark: flat `#1a1d23`, blue `#50a4e9` accent |
 
-The picker at the far right of the header sets `data-theme` on `<html>` and stores the choice in `localStorage`; an inline script in `Base.astro` applies it before first paint.
+The list lives in `src/data/themes.ts`; palettes are `html[data-theme='<name>']` blocks in `tokens.css` (the default is `:root`), custom code themes are in `shiki-theme.mjs`, and planet looks, orbit angles and periods are in `layout.css`. Clicking the orbit icon at the far right of the header opens the orrery; planets drift slowly and pause on hover, and arrow keys move between them. The choice is stored in `localStorage` and an inline script in `Base.astro` applies it before first paint.
 
 ## Posts
 

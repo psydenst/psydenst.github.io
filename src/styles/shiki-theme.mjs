@@ -97,3 +97,60 @@ export const peachpuffTheme = {
     { scope: ['source.shell variable.other', 'support.function.builtin.shell'], settings: { foreground: '#008b8b' } },
   ],
 };
+
+// Vim's built-in highlight groups with background=dark (Comment, Constant,
+// Identifier, Statement, PreProc, Type, Special, Title).
+export const vimTheme = {
+  name: 'vim',
+  type: 'dark',
+  colors: {
+    'editor.background': '#000000',
+    'editor.foreground': '#e4e4e4',
+  },
+  settings: [
+    { settings: { background: '#000000', foreground: '#e4e4e4' } },
+    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#80a0ff' } },
+    { scope: ['string', 'punctuation.definition.string', 'string.template', 'constant', 'constant.numeric', 'constant.language', 'constant.character', 'constant.other'], settings: { foreground: '#ffa0a0' } },
+    { scope: ['entity.name.function', 'support.function', 'meta.function-call.generic', 'variable.other.property', 'support.type.property-name', 'meta.object-literal.key', 'punctuation.definition.tag'], settings: { foreground: '#40ffff' } },
+    { scope: ['keyword', 'keyword.control', 'keyword.operator', 'keyword.operator.new', 'storage.modifier', 'entity.name.tag'], settings: { foreground: '#ffff60', fontStyle: 'bold' } },
+    { scope: ['storage.type', 'entity.name.type', 'entity.name.class', 'support.type', 'support.class', 'entity.other.inherited-class', 'entity.other.attribute-name'], settings: { foreground: '#60ff60', fontStyle: 'bold' } },
+    { scope: ['meta.preprocessor', 'keyword.control.directive', 'keyword.control.import', 'entity.name.function.preprocessor'], settings: { foreground: '#ff80ff' } },
+    { scope: ['constant.character.escape', 'string.regexp', 'punctuation.definition.template-expression', 'string.other.link'], settings: { foreground: '#ffa500' } },
+    { scope: ['entity.name.section', 'markup.heading'], settings: { foreground: '#ff40ff', fontStyle: 'bold' } },
+    { scope: ['markup.bold'], settings: { fontStyle: 'bold' } },
+    { scope: ['markup.italic'], settings: { fontStyle: 'italic' } },
+    { scope: ['markup.inserted'], settings: { foreground: '#60ff60' } },
+    { scope: ['markup.deleted'], settings: { foreground: '#ff6060' } },
+    { scope: ['invalid', 'invalid.illegal'], settings: { foreground: '#ff6060' } },
+    { scope: ['source.shell variable.other', 'support.function.builtin.shell'], settings: { foreground: '#40ffff' } },
+  ],
+};
+
+// Vim's `elflord`: cyan Normal on black, magenta constants, red specials and
+// operators, dark-red bold statements, green bold types, white functions.
+export const elflordTheme = {
+  name: 'elflord',
+  type: 'dark',
+  colors: {
+    'editor.background': '#000000',
+    'editor.foreground': '#00ffff',
+  },
+  settings: [
+    { settings: { background: '#000000', foreground: '#00ffff' } },
+    { scope: ['comment', 'punctuation.definition.comment'], settings: { foreground: '#80a0ff' } },
+    { scope: ['string', 'punctuation.definition.string', 'string.template', 'constant', 'constant.numeric', 'constant.language', 'constant.character', 'constant.other'], settings: { foreground: '#ff00ff' } },
+    { scope: ['constant.character.escape', 'string.regexp', 'punctuation.definition.template-expression', 'keyword.operator'], settings: { foreground: '#ff0000' } },
+    { scope: ['variable.other.property', 'support.type.property-name', 'meta.object-literal.key', 'support.variable', 'variable.parameter'], settings: { foreground: '#40ffff' } },
+    { scope: ['entity.name.function', 'support.function', 'meta.function-call.generic'], settings: { foreground: '#ffffff' } },
+    { scope: ['keyword', 'keyword.control', 'keyword.operator.new', 'storage.modifier', 'entity.name.tag'], settings: { foreground: '#aa4444', fontStyle: 'bold' } },
+    { scope: ['storage.type', 'entity.name.type', 'entity.name.class', 'support.type', 'support.class', 'entity.other.inherited-class', 'entity.other.attribute-name'], settings: { foreground: '#60ff60', fontStyle: 'bold' } },
+    { scope: ['meta.preprocessor', 'keyword.control.directive', 'keyword.control.import', 'entity.name.function.preprocessor'], settings: { foreground: '#ff80ff' } },
+    { scope: ['entity.name.section', 'markup.heading'], settings: { foreground: '#ff00ff', fontStyle: 'bold' } },
+    { scope: ['markup.bold'], settings: { fontStyle: 'bold' } },
+    { scope: ['markup.italic'], settings: { fontStyle: 'italic' } },
+    { scope: ['markup.inserted'], settings: { foreground: '#60ff60' } },
+    { scope: ['markup.deleted'], settings: { foreground: '#ff0000' } },
+    { scope: ['invalid', 'invalid.illegal'], settings: { foreground: '#ffffff' } },
+    { scope: ['source.shell variable.other', 'support.function.builtin.shell'], settings: { foreground: '#40ffff' } },
+  ],
+};

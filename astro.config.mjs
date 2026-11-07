@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { astrodarkTheme, peachpuffTheme, shikiTheme } from './src/styles/shiki-theme.mjs';
+import { astrodarkTheme, elflordTheme, peachpuffTheme, shikiTheme, vimTheme } from './src/styles/shiki-theme.mjs';
 
 const linkedin = 'https://www.linkedin.com/in/pedrosydenstricker/';
 
@@ -18,7 +18,15 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      themes: { nvim: shikiTheme, astrodark: astrodarkTheme, peachpuff: peachpuffTheme },
+      themes: {
+        nvim: shikiTheme,
+        vim: vimTheme,
+        peachpuff: peachpuffTheme,
+        'rose-pine-moon': 'rose-pine-moon',
+        'kanagawa-lotus': 'kanagawa-lotus',
+        elflord: elflordTheme,
+        astrodark: astrodarkTheme,
+      },
       defaultColor: 'nvim',
       wrap: false,
     },

@@ -156,3 +156,189 @@ html[data-theme='peachpuff'] {
   --nv-glow: 0 0 16px rgb(var(--accent-rgb) / 0.18);
   --shadow: 0 1px 0 rgb(255 255 255 / 0.35) inset, 0 18px 40px -28px rgb(var(--shadow-rgb) / 0.45);
 }
+
+/* Vim's built-in colors with background=dark: terminal black, yellow statements and line numbers. */
+html[data-theme='vim'] {
+  color-scheme: dark;
+  --bg: #000000;
+  --bg-elev: #0a0a0a;
+  --bg-card: #101010;
+  --rule: #1c1c1c;
+  --rule-strong: #303030;
+  --text: #d7d7d7;
+  --brush: #ffffff;
+  --muted: #8a8a8a;
+  --h3: #ffffff;
+  --quote: #b2b2b2;
+  --nv-blue: #80a0ff;       /* Comment */
+  --nv-cyan: #ffff60;       /* Statement */
+  --nv-teal: #40ffff;       /* Identifier */
+  --nv-purple: #ff80ff;     /* PreProc */
+  --nv-magenta: #ff40ff;    /* Title */
+  --nv-green: #60ff60;      /* Type */
+  --nv-orange: #ffa500;     /* Special */
+  --nv-yellow: #ffff60;
+  --nv-red: #ff6060;
+  --nv-comment: #80a0ff;
+  --nv-gutter: #c8c800;     /* LineNr */
+  --bg-rgb: 0 0 0;
+  --accent-rgb: 255 255 96;
+  --purple-rgb: 255 128 255;
+  --glow-1: rgb(128 160 255 / 0.05);
+  --glow-2: rgb(255 255 96 / 0.035);
+  --code-bg: #080808;
+  --tab-bg: #1c1c1c;
+  --tab-fg: #a8a8a8;
+  --tab-sel-bg: #000000;
+  --tab-sel-fg: #ffffff;
+  --status-bg: #262626;
+  --status-fg: #bcbcbc;
+  --status-file: #ffffff;
+  --mode-bg: #ffff60;
+  --mode-fg: #000000;
+  --status-accent: #40ffff;
+  --selection: #4e4e4e;     /* Visual */
+  --hero-art-opacity: .8;
+  --link-hover: var(--nv-teal);
+  --nv-glow: 0 0 14px rgb(var(--accent-rgb) / 0.18);
+}
+
+/* Rosé Pine Moon: base, surface, overlay; rose accent, iris, foam, gold. */
+html[data-theme='rose-pine-moon'] {
+  color-scheme: dark;
+  --bg: #232136;            /* base */
+  --bg-elev: #26233a;
+  --bg-card: #2a273f;       /* surface */
+  --rule: #393552;          /* overlay */
+  --rule-strong: #44415a;   /* highlight med */
+  --text: #e0def4;          /* text */
+  --brush: #f6f4ff;
+  --muted: #908caa;         /* subtle */
+  --h3: #ea9a97;            /* rose */
+  --quote: #908caa;
+  --nv-blue: #9ccfd8;       /* foam */
+  --nv-cyan: #ea9a97;       /* rose */
+  --nv-teal: #3e8fb0;       /* pine */
+  --nv-purple: #c4a7e7;     /* iris */
+  --nv-magenta: #eb6f92;    /* love */
+  --nv-green: #3e8fb0;      /* pine */
+  --nv-orange: #f6c177;     /* gold */
+  --nv-yellow: #f6c177;
+  --nv-red: #eb6f92;
+  --nv-comment: #6e6a86;    /* muted */
+  --nv-gutter: #56526e;     /* highlight high */
+  --bg-rgb: 35 33 54;
+  --accent-rgb: 234 154 151;
+  --purple-rgb: 196 167 231;
+  --glow-1: rgb(196 167 231 / 0.08);
+  --glow-2: rgb(234 154 151 / 0.06);
+  --code-bg: #2a273f;
+  --tab-bg: #2a273f;
+  --tab-fg: #908caa;
+  --tab-sel-bg: #393552;
+  --tab-sel-fg: #e0def4;
+  --status-bg: #2a273f;
+  --status-fg: #908caa;
+  --status-file: #e0def4;
+  --mode-bg: #ea9a97;
+  --mode-fg: #232136;
+  --status-accent: #c4a7e7;
+  --selection: #44415a;
+  --hero-art-opacity: .85;
+  --nv-glow: 0 0 16px rgb(var(--accent-rgb) / 0.22);
+}
+
+/* Light: Kanagawa Lotus (lotusWhite paper, lotusInk text, lotusBlue4 accent). */
+html[data-theme='kanagawa-lotus'] {
+  color-scheme: light;
+  --bg: #f2ecbc;            /* lotusWhite3 */
+  --bg-elev: #ebe4b5;
+  --bg-card: #e5ddb0;       /* lotusWhite2 */
+  --rule: #dcd5ac;          /* lotusWhite1 */
+  --rule-strong: #cbc39b;
+  --text: #545464;          /* lotusInk1 */
+  --brush: #43436c;         /* lotusInk2 */
+  --muted: #716e61;         /* lotusGray2 */
+  --h3: #43436c;
+  --quote: #766b90;         /* lotusViolet2 */
+  --nv-blue: #4e8ca2;       /* lotusTeal1 */
+  --nv-cyan: #4d699b;       /* lotusBlue4 */
+  --nv-teal: #597b75;       /* lotusAqua */
+  --nv-purple: #624c83;     /* lotusViolet4 */
+  --nv-magenta: #b35b79;    /* lotusPink */
+  --nv-green: #6f894e;      /* lotusGreen */
+  --nv-orange: #cc6d00;     /* lotusOrange */
+  --nv-yellow: #77713f;     /* lotusYellow */
+  --nv-red: #c84053;        /* lotusRed */
+  --nv-comment: #8a8980;    /* lotusGray3 */
+  --nv-gutter: #a09cac;     /* lotusViolet1 */
+  --bg-rgb: 242 236 188;
+  --accent-rgb: 77 105 155;
+  --purple-rgb: 98 76 131;
+  --ink-rgb: 0 0 0;
+  --shadow-rgb: 90 80 40;
+  --glow-1: rgb(181 203 210 / 0.45);   /* lotusBlue2 */
+  --glow-2: rgb(228 215 148 / 0.4);    /* lotusWhite5 */
+  --code-bg: #eee7b8;
+  --tab-bg: #e5ddb0;
+  --tab-fg: #716e61;
+  --tab-sel-bg: #f2ecbc;
+  --tab-sel-fg: #43436c;
+  --status-bg: #dcd5ac;
+  --status-fg: #716e61;
+  --status-file: #43436c;
+  --mode-bg: #4d699b;
+  --mode-fg: #f2ecbc;
+  --status-accent: #624c83;
+  --pop-shadow: 0 10px 24px -14px rgb(90 80 40 / 0.45);
+  --selection: #c9cbd1;     /* lotusViolet3 */
+  --hero-art-opacity: .5;
+  --link-hover: var(--nv-purple);
+  --nv-glow: 0 0 14px rgb(var(--accent-rgb) / 0.16);
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.4) inset, 0 18px 40px -28px rgb(var(--shadow-rgb) / 0.4);
+}
+
+/* Vim's `elflord`: cyan on black, green types, magenta constants, red statements. */
+html[data-theme='elflord'] {
+  color-scheme: dark;
+  --bg: #000000;
+  --bg-elev: #050c0c;
+  --bg-card: #071212;
+  --rule: #0f2222;
+  --rule-strong: #1b3b3b;
+  --text: #8cf2f2;          /* Normal (cyan), softened for prose */
+  --brush: #ffffff;         /* Function */
+  --muted: #4fa7a7;
+  --h3: #40ffff;            /* Identifier */
+  --quote: #80a0ff;
+  --nv-blue: #80a0ff;       /* Comment */
+  --nv-cyan: #00ffff;       /* Normal */
+  --nv-teal: #40ffff;       /* Identifier */
+  --nv-purple: #ff80ff;     /* PreProc */
+  --nv-magenta: #ff00ff;    /* Constant */
+  --nv-green: #60ff60;      /* Type */
+  --nv-orange: #ff6050;     /* Special */
+  --nv-yellow: #ffff00;     /* Todo */
+  --nv-red: #ff0000;        /* Operator */
+  --nv-comment: #80a0ff;
+  --nv-gutter: #aa4444;     /* Statement */
+  --bg-rgb: 0 0 0;
+  --accent-rgb: 0 255 255;
+  --purple-rgb: 255 128 255;
+  --glow-1: rgb(0 255 255 / 0.05);
+  --glow-2: rgb(170 68 68 / 0.07);
+  --code-bg: #030808;
+  --tab-bg: #051010;
+  --tab-fg: #4fa7a7;
+  --tab-sel-bg: #000000;
+  --tab-sel-fg: #ffffff;
+  --status-bg: #062020;
+  --status-fg: #40c0c0;
+  --status-file: #ffffff;
+  --mode-bg: #aa4444;
+  --mode-fg: #ffffff;
+  --status-accent: #60ff60;
+  --selection: #0f5050;
+  --hero-art-opacity: .8;
+  --nv-glow: 0 0 16px rgb(var(--accent-rgb) / 0.25);
+}

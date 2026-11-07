@@ -171,3 +171,31 @@ html[data-theme='peachpuff'] .astro-code span {
   font-weight: var(--shiki-peachpuff-font-weight) !important;
   text-decoration: var(--shiki-peachpuff-text-decoration) !important;
 }
+html[data-theme='vim'] .astro-code,
+html[data-theme='vim'] .astro-code span {
+  color: var(--shiki-vim) !important;
+  font-style: var(--shiki-vim-font-style) !important;
+  font-weight: var(--shiki-vim-font-weight) !important;
+  text-decoration: var(--shiki-vim-text-decoration) !important;
+}
+html[data-theme='rose-pine-moon'] .astro-code,
+html[data-theme='rose-pine-moon'] .astro-code span {
+  color: var(--shiki-rose-pine-moon) !important;
+  font-style: var(--shiki-rose-pine-moon-font-style) !important;
+  font-weight: var(--shiki-rose-pine-moon-font-weight) !important;
+  text-decoration: var(--shiki-rose-pine-moon-text-decoration) !important;
+}
+html[data-theme='kanagawa-lotus'] .astro-code,
+html[data-theme='kanagawa-lotus'] .astro-code span {
+  color: var(--shiki-kanagawa-lotus) !important;
+  font-style: var(--shiki-kanagawa-lotus-font-style) !important;
+  font-weight: var(--shiki-kanagawa-lotus-font-weight) !important;
+  text-decoration: var(--shiki-kanagawa-lotus-text-decoration) !important;
+}
+html[data-theme='elflord'] .astro-code,
+html[data-theme='elflord'] .astro-code span {
+  color: var(--shiki-elflord) !important;
+  font-style: var(--shiki-elflord-font-style) !important;
+  font-weight: var(--shiki-elflord-font-weight) !important;
+  text-decoration: var(--shiki-elflord-text-decoration) !important;
+}

@@ -7,6 +7,7 @@ import '../styles/layout.css';
 import '../styles/nvim.css';
 import LangSwitch from '../components/LangSwitch.astro';
 import { site } from '../data/site';
+import { defaultTheme, themes } from '../data/themes';
 import { getLangFromUrl, localizePath, stripLang, useTranslations, localeTag } from '../i18n/utils';
 
 interface Props {
@@ -26,7 +27,8 @@ const nav = [
   { href: '/about', label: t('nav.about') },
   { href: '/blog', label: t('nav.blog') },
 ];
-const themes = ['nvim', 'astrodark', 'peachpuff'] as const;
+const themeColors = Object.fromEntries(themes.map((th) => [th.name, th.color]));
+const homeTheme = themes.find((th) => th.name === defaultTheme)!;
 const isCurrent = (href: string) => (href === '/' ? route === '/' : route === href || route.startsWith(href + '/'));
 
 const origin = Astro.site ?? Astro.url;
@@ -40,14 +42,13 @@ const ogImage = abs(image ?? '/og.png');
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#07090f" />
-    <script is:inline>
+    <script is:inline define:vars={{ themeColors, defaultTheme }}>
       try {
         var saved = localStorage.getItem('theme');
         if (saved === 'light') localStorage.setItem('theme', (saved = 'peachpuff'));
-        var colors = { astrodark: '#1a1d23', peachpuff: '#ffdab9' };
-        if (colors[saved]) {
+        if (saved && saved !== defaultTheme && themeColors[saved]) {
           document.documentElement.dataset.theme = saved;
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', colors[saved]);
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColors[saved]);
         }
       } catch (e) {}
     </script>
@@ -85,13 +86,37 @@ const ogImage = abs(image ?? '/og.png');
           <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label={t('nav.menu')}>
             <span></span><span></span>
           </button>
-          <div class="theme-picker" role="radiogroup" aria-label={t('theme.label')}>
-            {themes.map((name) => (
-              <button type="button" role="radio" aria-checked={name === 'nvim' ? 'true' : 'false'} data-theme-choice={name} aria-label={name} title={name}>
-                <span class={`tp-swatch ${name}`} aria-hidden="true"></span>
-              </button>
-            ))}
-            <span class="tp-ring" aria-hidden="true"></span>
+          <div class="orrery" data-orrery>
+            <button type="button" class="orb-trigger" aria-expanded="false" aria-controls="orb-panel" data-label={t('theme.label')} aria-label={`${t('theme.label')}: ${defaultTheme}`} title={t('theme.label')}>
+              <span class="orb-mini" aria-hidden="true"><span class="orb-mini-planet"></span></span>
+            </button>
+            <div class="orb-panel" id="orb-panel">
+              <div class="orb-system" role="radiogroup" aria-label={t('theme.label')}>
+                <span class="orb-sun" aria-hidden="true"></span>
+                {themes.map((th, i) => (
+                  <div class={`orb-orbit ${th.planet}`} style={`--i: ${i}`}>
+                    <div class="orb-track">
+                      <button
+                        type="button"
+                        role="radio"
+                        class={`orb-planet ${th.planet}`}
+                        data-theme-choice={th.name}
+                        data-planet={th.label[lang]}
+                        data-color={th.color}
+                        aria-checked={th.name === defaultTheme ? 'true' : 'false'}
+                        aria-label={`${th.name} (${th.label[lang]})`}
+                        tabindex={th.name === defaultTheme ? 0 : -1}
+                      >
+                        <span class="orb-body" aria-hidden="true"></span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p class="orb-caption mono" aria-hidden="true">
+                <span data-orb-planet>{homeTheme.label[lang]}</span><span class="dim">·</span><b data-orb-name>{homeTheme.name}</b>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -126,7 +151,7 @@ const ogImage = abs(image ?? '/og.png');
             return;
           }
           if (Math.abs(y - lastY) < 6) return;
-          if (y > lastY && !nav?.classList.contains('open')) {
+          if (y > lastY && !nav?.classList.contains('open') && !header.querySelector('.orrery.open')) {
             header.classList.add('hidden');
           } else {
             header.classList.remove('hidden');
@@ -138,24 +163,77 @@ const ogImage = abs(image ?? '/og.png');
         addEventListener('scroll', onScroll, { passive: true });
       }
       const root = document.documentElement;
-      const themeColors: Record<string, string> = { nvim: '#07090f', astrodark: '#1a1d23', peachpuff: '#ffdab9' };
-      const choices = document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]');
-      const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
-      const applyTheme = (name: string) => {
-        if (!(name in themeColors)) name = 'nvim';
-        if (name === 'nvim') delete root.dataset.theme;
-        else root.dataset.theme = name;
-        choices.forEach((b) => b.setAttribute('aria-checked', String(b.dataset.themeChoice === name)));
-        themeColor?.setAttribute('content', themeColors[name]);
-      };
-      applyTheme(root.dataset.theme ?? 'nvim');
-      choices.forEach((b) => b.addEventListener('click', () => {
-        const name = b.dataset.themeChoice ?? 'nvim';
-        root.classList.add('theming');
-        applyTheme(name);
-        try { localStorage.setItem('theme', name); } catch {}
-        setTimeout(() => root.classList.remove('theming'), 400);
-      }));
+      const orrery = document.querySelector<HTMLElement>('[data-orrery]');
+      const trigger = orrery?.querySelector<HTMLButtonElement>('.orb-trigger');
+      if (orrery && trigger) {
+        const planets = [...orrery.querySelectorAll<HTMLButtonElement>('[data-theme-choice]')];
+        const home = planets.find((p) => p.getAttribute('aria-checked') === 'true') ?? planets[0];
+        const captionPlanet = orrery.querySelector<HTMLElement>('[data-orb-planet]');
+        const captionName = orrery.querySelector<HTMLElement>('[data-orb-name]');
+        const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+        let current = home;
+
+        const caption = (p: HTMLButtonElement) => {
+          if (captionPlanet) captionPlanet.textContent = p.dataset.planet ?? '';
+          if (captionName) captionName.textContent = p.dataset.themeChoice ?? '';
+        };
+        const applyTheme = (name: string) => {
+          current = planets.find((p) => p.dataset.themeChoice === name) ?? home;
+          if (current === home) delete root.dataset.theme;
+          else root.dataset.theme = current.dataset.themeChoice;
+          planets.forEach((p) => {
+            p.setAttribute('aria-checked', String(p === current));
+            p.tabIndex = p === current ? 0 : -1;
+          });
+          themeColor?.setAttribute('content', current.dataset.color ?? '');
+          trigger.setAttribute('aria-label', `${trigger.dataset.label}: ${current.dataset.themeChoice}`);
+          caption(current);
+        };
+        const choose = (p: HTMLButtonElement) => {
+          root.classList.add('theming');
+          applyTheme(p.dataset.themeChoice ?? '');
+          try { localStorage.setItem('theme', current.dataset.themeChoice ?? ''); } catch {}
+          setTimeout(() => root.classList.remove('theming'), 400);
+        };
+        const setOpen = (open: boolean, focusPlanet = false) => {
+          orrery.classList.toggle('open', open);
+          trigger.setAttribute('aria-expanded', String(open));
+          if (open && focusPlanet) current.focus();
+        };
+        applyTheme(root.dataset.theme ?? home.dataset.themeChoice ?? '');
+
+        // a click with detail 0 came from the keyboard: move focus into the orrery
+        trigger.addEventListener('click', (e) => setOpen(!orrery.classList.contains('open'), e.detail === 0));
+        planets.forEach((p, i) => {
+          p.addEventListener('click', () => choose(p));
+          p.addEventListener('mouseenter', () => caption(p));
+          p.addEventListener('mouseleave', () => caption(current));
+          p.addEventListener('focus', () => caption(p));
+          p.addEventListener('keydown', (e) => {
+            const last = planets.length - 1;
+            const moves: Record<string, number> = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: last };
+            const next = moves[e.key];
+            if (next === undefined) return;
+            e.preventDefault();
+            const target = planets[(next + planets.length) % planets.length];
+            target.focus();
+            choose(target);
+          });
+        });
+        orrery.addEventListener('keydown', (e) => {
+          if (e.key !== 'Escape' || !orrery.classList.contains('open')) return;
+          setOpen(false);
+          trigger.focus();
+        });
+        orrery.addEventListener('focusout', (e) => {
+          const to = e.relatedTarget as Node | null;
+          if (to && !orrery.contains(to)) setOpen(false);
+          caption(current);
+        });
+        document.addEventListener('pointerdown', (e) => {
+          if (orrery.classList.contains('open') && !orrery.contains(e.target as Node)) setOpen(false);
+        });
+      }
       document.querySelectorAll<HTMLAnchorElement>('.lang-switch a').forEach((a) => {
         a.addEventListener('click', () => {
           try { localStorage.setItem('lang', a.dataset.lang ?? 'en'); } catch {}
