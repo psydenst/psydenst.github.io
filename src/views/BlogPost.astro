@@ -76,3 +76,39 @@ const untranslated = post.data.lang !== lang;
     <NvimBar kind="status" path={file} lang={lang} scroll />
   </div>
 </Base>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.toc a')];
+  const heads = links
+    .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
+    .filter((h): h is HTMLElement => h !== null);
+  const side = document.querySelector<HTMLElement>('.post-side');
+  let current: HTMLAnchorElement | undefined;
+
+  const activate = (link: HTMLAnchorElement | undefined) => {
+    if (!link || link === current) return;
+    current?.classList.remove('active');
+    current?.removeAttribute('aria-current');
+    link.classList.add('active');
+    link.setAttribute('aria-current', 'location');
+    current = link;
+    if (side && side.scrollHeight > side.clientHeight) {
+      const top = link.offsetTop - side.clientHeight / 2;
+      side.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
+  const update = () => {
+    if (!heads.length) return;
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    const line = window.innerHeight * 0.3;
+    let i = atBottom ? heads.length - 1 : 0;
+    if (!atBottom) heads.forEach((h, n) => { if (h.getBoundingClientRect().top <= line) i = n; });
+    activate(links[i]);
+  };
+
+  links.forEach((a) => a.addEventListener('click', () => activate(a)));
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+</script>
