@@ -1,0 +1,22 @@
+---
+import { formatDate, sectionLabel } from '../data/site';
+import { postUrl } from '../lib';
+interface Props { posts: any[]; showSection?: boolean }
+const { posts, showSection = true } = Astro.props;
+---
+{posts.length === 0 ? (
+  <p class="empty">No texts in this section yet.</p>
+) : (
+  <ul class="list">
+    {posts.map((p) => (
+      <li>
+        <div class="meta">
+          <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+          {showSection && <a href={`/blog/${p.data.section}`}>{sectionLabel(p.data.section)}</a>}
+        </div>
+        <h3><a href={postUrl(p)}>{p.data.title}</a></h3>
+        <p class="muted">{p.data.description}</p>
+      </li>
+    ))}
+  </ul>
+)}

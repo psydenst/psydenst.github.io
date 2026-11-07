@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { portfolio } from '../data/portfolio';
+import { site } from '../data/site';
+---
+<Base title="Portfolio" description="Selected public work by psydenst.">
+  <div class="wrap">
+    <header class="page-head"><p class="eyebrow">Portfolio</p><h1>Selected work</h1><hr class="rule cyan" /></header>
+    {portfolio.length === 0 ? (
+      <p class="empty">Nothing listed here yet. Meanwhile, see my <a href={site.github}>GitHub</a> and <a href="/publications">publications</a>.</p>
+    ) : (
+      <ul class="card-grid">
+        {portfolio.map((item) => (
+          <li class="card"><h3>{item.title}</h3><p>{item.summary}</p>{item.url && <a class="cta" href={item.url} target="_blank" rel="noopener noreferrer">Open ↗</a>}</li>
+        ))}
+      </ul>
+    )}
+  </div>
+</Base>

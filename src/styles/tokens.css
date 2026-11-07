@@ -1,0 +1,20 @@
+:root {
+  color-scheme: dark;
+  --bg: #000000;
+  --overlay: rgba(0, 0, 0, 0.78);
+  --orange: #c23b18;
+  --peach: #f3c2a0;
+  --purple: #6b3aa0;
+  --purple-muted: #9b84bd;
+  --cyan: #2f6f7c;
+  --cyan-light: #6fb3c1;
+  --green: #8eae78;
+  --brush: #e6e1dc;
+  --text: #f4f0ea;
+  --muted: #b5b0aa;
+  --rule: #2a2724;
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --measure: 68ch;
+  --wrap: 72rem;
+}

@@ -1,0 +1,12 @@
+---
+import type { Publication } from '../data/publications';
+import { formatDate } from '../data/site';
+interface Props { pub: Publication }
+const { pub } = Astro.props;
+---
+<li class="card">
+  <div class="meta"><time datetime={pub.date}>{formatDate(pub.date)}</time>{pub.lang && <span class={`badge ${pub.lang}`}>{pub.lang}</span>}</div>
+  <h3>{pub.title}</h3>
+  <p>{pub.teaser}</p>
+  <a class="cta" href={pub.url} target="_blank" rel="noopener noreferrer">Read on Nym ↗</a>
+</li>

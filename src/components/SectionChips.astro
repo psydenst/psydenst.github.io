@@ -1,0 +1,9 @@
+---
+import { sections } from '../data/site';
+interface Props { current?: string }
+const { current } = Astro.props;
+---
+<ul class="chips" aria-label="Blog sections">
+  <li><a href="/blog" aria-current={!current ? 'page' : undefined}>All</a></li>
+  {sections.map((s) => <li><a href={`/blog/${s.slug}`} aria-current={current === s.slug ? 'page' : undefined}>{s.label}</a></li>)}
+</ul>

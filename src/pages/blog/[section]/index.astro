@@ -1,0 +1,20 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PostList from '../../../components/PostList.astro';
+import SectionChips from '../../../components/SectionChips.astro';
+import { sections } from '../../../data/site';
+import { getPosts } from '../../../lib';
+
+export function getStaticPaths() {
+  return sections.map((s) => ({ params: { section: s.slug }, props: { section: s } }));
+}
+const { section } = Astro.props;
+const posts = (await getPosts()).filter((p) => p.data.section === section.slug);
+---
+<Base title={section.label} description={`${section.label} by psydenst. ${section.blurb}`}>
+  <div class="wrap">
+    <header class="page-head"><p class="eyebrow">Blog</p><h1>{section.label}</h1><hr class="rule cyan" /><p class="muted">{section.blurb}</p></header>
+    <SectionChips current={section.slug} />
+    <PostList posts={posts} showSection={false} />
+  </div>
+</Base>
