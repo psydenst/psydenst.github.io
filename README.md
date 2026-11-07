@@ -61,7 +61,8 @@ section: technical-studies   # technical-studies | fichamentos | comments | arti
 lang: en                     # en | pt (language of the text)
 tags: [devops, privacy]
 description: "One-line summary shown in lists and meta tags."
-cover: "/blog/my-post/cover.webp"   # optional, file in public/
+cover: "/blog/my-post/cover.webp"   # optional, file in public/; shown as the list thumbnail and the post banner
+coverFit: contain                   # optional: show the whole image (book covers) instead of cropping it
 source: "https://nym.com/blog/..."  # optional: where it was first published
 sourceName: "Nym"                   # optional: label for the source link
 readingTime: 6                      # optional: overrides the computed minutes
@@ -71,11 +72,13 @@ draft: false                        # true hides it from the build
 Body in Markdown.
 ```
 
+If the cover image also appears in the post body (e.g. a diagram), the post page skips the banner and the image is only used as the thumbnail.
+
 ### Topics (tags)
 
 Tags are the blog's topics. Every tag used by a published post gets its own page at `/blog/tags/<tag>/` in both languages, and a post with several tags appears on each of those pages. The blog index and the home page list the topics with post counts; the section (Articles, Reading notes, …) is kept as a secondary "type" filter. Tags must be lowercase-hyphenated slugs. Labels and one-line descriptions per language live in `topics` in `src/data/site.ts`; a new tag works without an entry there and is labelled with the tag itself.
 
-Current tags: `privacy`, `cybersecurity`, `technology-and-society`, `crypto`, `devops`, `42-rncp7`.
+Current tags: `privacy`, `cybersecurity`, `technology-and-society`, `crypto`, `devops`, `iac`, `42-rncp7`.
 Sections are defined in `src/data/site.ts`; the schema is in `src/content.config.ts`. Empty sections show "No texts in this section yet."
 
 `src/content/blog/en/technical-studies/hello-world.md` is a starter post kept as `draft: true`; set it to `false` to see a code-heavy post, or delete it.

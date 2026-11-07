@@ -4,7 +4,9 @@ description: "Reading notes on Robert Hafner's Terraform in Depth (Manning, 2025
 date: 2026-11-07
 section: fichamentos
 lang: en
-tags: [devops]
+tags: [devops, iac]
+cover: /blog/terraform-in-depth/book-cover.webp
+coverFit: contain
 draft: false
 ---
 

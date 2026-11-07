@@ -4,7 +4,9 @@ description: "Fichamento de Terraform in Depth, de Robert Hafner (Manning, 2025)
 date: 2026-11-07
 section: fichamentos
 lang: pt
-tags: [devops]
+tags: [devops, iac]
+cover: /blog/terraform-in-depth/book-cover.webp
+coverFit: contain
 draft: false
 ---
 

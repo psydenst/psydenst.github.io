@@ -63,7 +63,11 @@ export const topics: Record<string, { label: Record<Lang, string>; blurb: Record
   },
   devops: {
     label: { en: 'DevOps', pt: 'DevOps' },
-    blurb: { en: 'Infrastructure as code, Terraform, and running systems in production.', pt: 'Infraestrutura como código, Terraform e sistemas em produção.' },
+    blurb: { en: 'Delivery pipelines, operations, and running systems in production.', pt: 'Pipelines de entrega, operação e sistemas em produção.' },
+  },
+  iac: {
+    label: { en: 'IaC', pt: 'IaC' },
+    blurb: { en: 'Infrastructure as code: Terraform, state, providers, and modules.', pt: 'Infraestrutura como código: Terraform, state, providers e módulos.' },
   },
   '42-rncp7': {
     label: { en: '42 RNCP 7', pt: '42 RNCP 7' },
@@ -73,4 +77,4 @@ export const topics: Record<string, { label: Record<Lang, string>; blurb: Record
 export const topicLabel = (tag: string, lang: Lang) => topics[tag]?.label[lang] ?? tag;
 export const topicBlurb = (tag: string, lang: Lang) => topics[tag]?.blurb[lang];
 
-export const suggestedTags = ['42-rncp7', 'crypto', 'cybersecurity', 'devops', 'privacy', 'technology-and-society'];
+export const suggestedTags = ['42-rncp7', 'crypto', 'cybersecurity', 'devops', 'iac', 'privacy', 'technology-and-society'];

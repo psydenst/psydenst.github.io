@@ -4,7 +4,8 @@ description: "CLI, backend, and cloud: how state bridges logical addresses and r
 date: 2026-11-07
 section: articles
 lang: en
-tags: [devops]
+tags: [devops, iac]
+cover: /blog/terraform-state/from-code-to-apply.webp
 draft: false
 ---
 

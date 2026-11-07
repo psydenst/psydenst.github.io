@@ -16,6 +16,8 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const source = post.data.source ? new URL(post.data.source) : null;
 const sourceName = post.data.sourceName ?? source?.hostname.replace(/^www\./, '');
 const untranslated = post.data.lang !== lang;
+const { cover, coverFit } = post.data;
+const showCover = cover && !post.body?.includes(cover);
 ---
 <Base title={post.data.title} description={post.data.description} image={post.data.cover}>
   <div class="wrap nv-page nv-post">
@@ -40,9 +42,9 @@ const untranslated = post.data.lang !== lang;
         {untranslated && <p class="notice mono">{t('blog.untranslated')}</p>}
       </header>
 
-      {post.data.cover && (
-        <figure class="post-cover">
-          <img src={post.data.cover} alt="" width="1280" height="720" loading="eager" decoding="async" />
+      {showCover && (
+        <figure class:list={['post-cover', coverFit]} style={coverFit === 'contain' ? { '--cover': `url(${cover})` } : undefined}>
+          <img src={cover} alt="" width="1280" height="720" loading="eager" decoding="async" />
         </figure>
       )}
 

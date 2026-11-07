@@ -31,7 +31,7 @@ const t = useTranslations(lang);
             )}
           </div>
           {p.data.cover && (
-            <a class="post-thumb" href={postUrl(p, lang)} tabindex="-1" aria-hidden="true">
+            <a class:list={['post-thumb', p.data.coverFit]} style={p.data.coverFit === 'contain' ? { '--cover': `url(${p.data.cover})` } : undefined} href={postUrl(p, lang)} tabindex="-1" aria-hidden="true">
               <img src={p.data.cover} alt="" loading="lazy" decoding="async" width="320" height="180" />
             </a>
           )}

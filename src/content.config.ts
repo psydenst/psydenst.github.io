@@ -15,6 +15,8 @@ const blog = defineCollection({
     description: z.string(),
     /** Site-relative path to a cover image, e.g. /blog/<slug>/cover.jpg */
     cover: z.string().optional(),
+    /** `contain` shows the whole image (book covers, tall diagrams) over a blurred copy of itself. */
+    coverFit: z.enum(['cover', 'contain']).default('cover'),
     /** URL of the original publication, when the text first appeared elsewhere. */
     source: z.string().url().optional(),
     sourceName: z.string().optional(),

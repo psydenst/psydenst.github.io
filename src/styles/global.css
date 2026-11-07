@@ -100,6 +100,9 @@ code, kbd, samp, .mono { font-family: var(--font-mono); font-feature-settings: '
 .post-thumb { display: block; width: 11rem; aspect-ratio: 16 / 9; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--rule-strong); background: var(--bg-card); }
 .post-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.85) brightness(.9); transition: filter .2s var(--ease), transform .3s var(--ease); }
 .post-row:hover .post-thumb img { filter: none; transform: scale(1.03); }
+.post-thumb.contain { position: relative; }
+.post-thumb.contain::before { content: ''; position: absolute; inset: -15%; background: var(--cover) center / cover no-repeat; filter: blur(10px) saturate(.9); opacity: .32; }
+.post-thumb.contain img { position: relative; object-fit: contain; padding: .3rem 0; }
 @media (max-width: 720px) { .post-row { grid-template-columns: 2rem minmax(0, 1fr); } .post-thumb { display: none; } }
 
 /* generic prose */

@@ -4,7 +4,8 @@ description: "CLI, backend e nuvem: como o state liga endereços lógicos a recu
 date: 2026-11-07
 section: articles
 lang: pt
-tags: [devops]
+tags: [devops, iac]
+cover: /blog/terraform-state/from-code-to-apply.webp
 draft: false
 ---
 
