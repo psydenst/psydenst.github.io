@@ -1,12 +1,14 @@
 ---
 ---
 <span class="nv-visitor" hidden data-visitor-ip>
-  <span class="nv-seg nv-visitor-ip">Your IP: <b data-visitor-ip-value></b></span>
-  <span class="nv-seg nv-visitor-city" title="Approximate city (often the ISP metro, not a street). Shown only to you. Not stored by this site.">City: <b data-visitor-ip-city></b></span>
+  <span class="nv-seg nv-visitor-line">
+    IP: <b class="nv-visitor-ip" data-visitor-ip-value></b><span class="nv-visitor-sep" aria-hidden="true"> • </span><b class="nv-visitor-city" data-visitor-ip-city></b>
+  </span>
 </span>
 
 <script>
   const root = document.querySelector<HTMLElement>('[data-visitor-ip]');
+  const lineEl = document.querySelector<HTMLElement>('.nv-visitor-line');
   const ipEl = document.querySelector<HTMLElement>('[data-visitor-ip-value]');
   const cityEl = document.querySelector<HTMLElement>('[data-visitor-ip-city]');
 
@@ -70,12 +72,12 @@
     return null;
   };
 
-  if (root && ipEl && cityEl) {
+  if (root && lineEl && ipEl && cityEl) {
     lookup().then((geo) => {
       if (!geo) return;
       ipEl.textContent = shortenIp(geo.ip);
-      ipEl.title = geo.ip;
-      cityEl.textContent = geo.city || 'unavailable';
+      cityEl.textContent = geo.city || 'Unknown';
+      lineEl.title = geo.ip;
       root.hidden = false;
       document.querySelectorAll<HTMLElement>('.nv-encoding').forEach((el) => {
         el.hidden = true;

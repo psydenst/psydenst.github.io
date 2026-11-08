@@ -27,13 +27,13 @@
 .nv-pos { color: var(--status-accent); font-weight: 600; min-width: 4.5rem; justify-content: center; }
 @media (max-width: 640px) { .nv-branch, .nv-meta { display: none; } .nv-file { max-width: 50vw; } }
 
-/* visitor IP + city occupy the right-hand statusline slots, one thin row */
+/* visitor IP + city: one compact metadata segment on the main statusline row */
 .nv-visitor { display: contents; }
 .nv-visitor[hidden] { display: none; }
-.nv-visitor-ip { color: var(--text); }
-.nv-visitor-ip b { color: var(--nv-cyan); font-weight: 600; }
-.nv-visitor-city { color: var(--text); }
-.nv-visitor-city b { color: var(--nv-purple); font-weight: 600; }
+.nv-visitor-line { font-size: .62rem; letter-spacing: .01em; color: var(--status-fg); padding-inline: .7rem; }
+.nv-visitor-ip { color: var(--nv-cyan); font-weight: 600; }
+.nv-visitor-sep { color: var(--nv-comment); }
+.nv-visitor-city { color: var(--nv-purple); font-weight: 600; }
 
 /* section tiles */
 .section-grid { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: .75rem; }
