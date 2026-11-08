@@ -3,7 +3,7 @@
 <span class="nv-visitor" hidden data-visitor-ip>
   <span class="nv-seg nv-visitor-ip">Your IP: <b data-visitor-ip-value></b></span>
   <span class="nv-seg nv-visitor-city">City: <b data-visitor-ip-city></b></span>
-  <span class="nv-seg nv-visitor-note" title="City is approximate (often the ISP metro, not a street). Shown only to you. Not stored by this site.">approx. city · not stored</span>
+  <span class="nv-seg nv-visitor-note">approx. city · not stored</span>
 </span>
 
 <script>
@@ -25,23 +25,51 @@
     return city.length > 0 && city.length <= 80 ? city : '';
   };
 
+  type Geo = { ip: string; city: string };
+  type Endpoint = { url: string; pick: (data: Record<string, unknown>) => Geo | null };
+
+  const endpoints: Endpoint[] = [
+    {
+      url: 'https://get.geojs.io/v1/ip/geo.json',
+      pick: (data) => (typeof data.ip === 'string' ? { ip: data.ip.trim(), city: cityName(data.city) } : null),
+    },
+    {
+      url: 'https://ipwho.is/',
+      pick: (data) => {
+        if (data.success === false || typeof data.ip !== 'string') return null;
+        return { ip: data.ip.trim(), city: cityName(data.city) };
+      },
+    },
+    {
+      url: 'https://api64.ipify.org?format=json',
+      pick: (data) => (typeof data.ip === 'string' ? { ip: data.ip.trim(), city: '' } : null),
+    },
+  ];
+
+  const lookup = async (): Promise<Geo | null> => {
+    for (const endpoint of endpoints) {
+      const ctrl = new AbortController();
+      const timer = window.setTimeout(() => ctrl.abort(), 4000);
+      try {
+        const response = await fetch(endpoint.url, { signal: ctrl.signal, credentials: 'omit' });
+        if (!response.ok) continue;
+        const picked = endpoint.pick((await response.json()) as Record<string, unknown>);
+        if (picked && isIp(picked.ip)) return picked;
+      } catch {
+        // try the next public echo service
+      } finally {
+        window.clearTimeout(timer);
+      }
+    }
+    return null;
+  };
+
   if (root && ipEl && cityEl) {
-    const ctrl = new AbortController();
-    const timer = window.setTimeout(() => ctrl.abort(), 5000);
-    fetch('https://get.geojs.io/v1/ip/geo.json', {
-      signal: ctrl.signal,
-      credentials: 'omit',
-      cache: 'no-store',
-    })
-      .then((response) => (response.ok ? response.json() : Promise.reject()))
-      .then((data: { ip?: unknown; city?: unknown }) => {
-        const ip = typeof data?.ip === 'string' ? data.ip.trim() : '';
-        if (!isIp(ip)) return;
-        ipEl.textContent = ip;
-        cityEl.textContent = cityName(data?.city) || 'unavailable';
-        root.hidden = false;
-      })
-      .catch(() => {})
-      .finally(() => window.clearTimeout(timer));
+    lookup().then((geo) => {
+      if (!geo) return;
+      ipEl.textContent = geo.ip;
+      cityEl.textContent = geo.city || 'unavailable';
+      root.hidden = false;
+    });
   }
 </script>

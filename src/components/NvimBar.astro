@@ -26,11 +26,11 @@ const file = path.split('/').filter(Boolean).pop() ?? path;
     <span class="nv-seg nv-branch" aria-hidden="true">&#xe0a0; main</span>
     <span class="nv-seg nv-file" aria-hidden="true">{path}</span>
     <span class="nv-fill" aria-hidden="true"></span>
-    <VisitorIp />
-    {right && <span class="nv-seg" aria-hidden="true">{right}</span>}
-    <span class="nv-seg" aria-hidden="true">utf-8</span>
-    <span class="nv-seg" aria-hidden="true">markdown</span>
+    {right && <span class="nv-seg nv-meta" aria-hidden="true">{right}</span>}
+    <span class="nv-seg nv-meta" aria-hidden="true">utf-8</span>
+    <span class="nv-seg nv-meta" aria-hidden="true">markdown</span>
     {scroll && <span class="nv-seg nv-pos" aria-hidden="true" data-top={t('blog.top')} data-bot={t('blog.bot')}>{t('blog.top')}</span>}
+    <VisitorIp />
   </div>
 )}
 
