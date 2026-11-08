@@ -11,7 +11,7 @@ draft: false
 
 Terraform code, the state file, and infrastructure are not three versions of the same thing. They belong to distinct domains. Understanding their boundaries makes it possible to follow what actually travels between a declaration in a `.tf` file and an operation on a cloud resource.
 
-![Hand-drawn diagram of Terraform State: local CLI, remote backend, and Azure cloud, showing init, plan, and apply across those domains.](/blog/terraform-state/from-code-to-apply.webp)
+![Diagram of Terraform State across three domains: local CLI, remote backend, and Azure cloud, showing init, plan, and apply.](/blog/terraform-state/from-code-to-apply.webp)
 
 The scenario in this article consists of a local CLI, a remote backend in Azure Blob Storage, and resources in Azure. The following account organizes the stages in the source notes conceptually: it is not an exact trace of every internal call or a universal sequence for every execution option. Its central question is simpler: who reads the code, who retains the record, and who actually owns the resources?
 

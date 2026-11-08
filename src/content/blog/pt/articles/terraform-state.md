@@ -5,13 +5,13 @@ date: 2026-11-07
 section: articles
 lang: pt
 tags: [devops, iac]
-cover: /blog/terraform-state/from-code-to-apply.webp
+cover: /blog/terraform-state/from-code-to-apply-pt.webp
 draft: false
 ---
 
 O código Terraform, o arquivo de state e a infraestrutura não são três versões de uma mesma coisa. São elementos de domínios distintos. Entender suas fronteiras permite acompanhar o que realmente atravessa o caminho entre uma declaração em `.tf` e uma operação sobre um recurso na nuvem.
 
-![Diagrama feito à mão do Terraform State: CLI local, backend remoto e nuvem Azure, mostrando init, plan e apply entre esses domínios.](/blog/terraform-state/from-code-to-apply.webp)
+![Diagrama do Terraform State em três domínios: CLI local, backend remoto e nuvem Azure, mostrando init, plan e apply.](/blog/terraform-state/from-code-to-apply-pt.webp)
 
 O cenário deste artigo é um CLI local, um backend remoto em Azure Blob Storage e recursos no Azure. O percurso a seguir organiza conceitualmente as etapas descritas nas notas: não pretende ser um rastreamento exato de cada chamada interna, nem uma sequência universal para todas as opções de execução. A questão central é mais simples: quem lê o código, quem conserva o registro e quem efetivamente possui os recursos?
 
