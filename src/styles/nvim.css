@@ -27,6 +27,15 @@
 .nv-pos { color: var(--status-accent); font-weight: 600; min-width: 4.5rem; justify-content: center; }
 @media (max-width: 640px) { .nv-branch, .nv-seg:nth-last-child(2), .nv-seg:nth-last-child(3) { display: none; } .nv-file { max-width: 50vw; } }
 
+/* visitor IP + approximate city, filled in after a client-side geo lookup */
+.nv-visitor { display: inline-flex; align-items: stretch; flex-shrink: 1; min-width: 0; }
+.nv-visitor[hidden] { display: none; }
+.nv-visitor-ip { color: var(--text); }
+.nv-visitor-ip b { color: var(--nv-cyan); font-weight: 600; word-break: break-all; }
+.nv-visitor-city { color: var(--text); }
+.nv-visitor-city b { color: var(--nv-purple); font-weight: 600; }
+.nv-visitor-note { color: var(--nv-comment); }
+
 /* section tiles */
 .section-grid { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: .75rem; }
 .section-grid a { display: grid; gap: .3rem; padding: 1rem 1.1rem; border: 1px solid var(--rule-strong); border-radius: var(--radius-sm); background: var(--bg-card); text-decoration: none; color: var(--text); transition: border-color .15s var(--ease), box-shadow .15s var(--ease); }

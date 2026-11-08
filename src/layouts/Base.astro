@@ -6,7 +6,6 @@ import '../styles/global.css';
 import '../styles/layout.css';
 import '../styles/nvim.css';
 import LangSwitch from '../components/LangSwitch.astro';
-import VisitorIp from '../components/VisitorIp.astro';
 import { site } from '../data/site';
 import { defaultTheme, themes } from '../data/themes';
 import { getLangFromUrl, localizePath, stripLang, useTranslations, localeTag } from '../i18n/utils';
@@ -134,7 +133,6 @@ const ogImage = abs(image ?? '/og.png');
           <li><a href={site.nymAuthor[lang]} target="_blank" rel="noopener noreferrer">{t('footer.nym')}</a></li>
         </ul>
       </div>
-      <VisitorIp />
     </footer>
     <script>
       const btn = document.querySelector<HTMLButtonElement>('.nav-toggle');

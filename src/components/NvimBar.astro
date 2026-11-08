@@ -1,4 +1,5 @@
 ---
+import VisitorIp from './VisitorIp.astro';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 interface Props {
@@ -20,15 +21,16 @@ const file = path.split('/').filter(Boolean).pop() ?? path;
     <span class="nv-tab-right">nvim</span>
   </div>
 ) : (
-  <div class="nv-statusline mono" aria-hidden="true" data-scroll={scroll ? 'true' : undefined}>
-    <span class="nv-mode">{t('blog.mode')}</span>
-    <span class="nv-seg nv-branch">&#xe0a0; main</span>
-    <span class="nv-seg nv-file">{path}</span>
-    <span class="nv-fill"></span>
-    {right && <span class="nv-seg">{right}</span>}
-    <span class="nv-seg">utf-8</span>
-    <span class="nv-seg">markdown</span>
-    {scroll && <span class="nv-seg nv-pos" data-top={t('blog.top')} data-bot={t('blog.bot')}>{t('blog.top')}</span>}
+  <div class="nv-statusline mono" data-scroll={scroll ? 'true' : undefined}>
+    <span class="nv-mode" aria-hidden="true">{t('blog.mode')}</span>
+    <span class="nv-seg nv-branch" aria-hidden="true">&#xe0a0; main</span>
+    <span class="nv-seg nv-file" aria-hidden="true">{path}</span>
+    <span class="nv-fill" aria-hidden="true"></span>
+    <VisitorIp />
+    {right && <span class="nv-seg" aria-hidden="true">{right}</span>}
+    <span class="nv-seg" aria-hidden="true">utf-8</span>
+    <span class="nv-seg" aria-hidden="true">markdown</span>
+    {scroll && <span class="nv-seg nv-pos" aria-hidden="true" data-top={t('blog.top')} data-bot={t('blog.bot')}>{t('blog.top')}</span>}
   </div>
 )}
 

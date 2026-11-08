@@ -1,13 +1,15 @@
 ---
 ---
-<p class="visitor-ip wrap mono" hidden data-visitor-ip>
-  <span>Your IP: <b class="visitor-ip-value" data-visitor-ip-value></b></span>
-  <span class="visitor-ip-note dim">Shown only to you. Not stored by this site. Looked up via a public echo service.</span>
-</p>
+<span class="nv-visitor" hidden data-visitor-ip>
+  <span class="nv-seg nv-visitor-ip">Your IP: <b data-visitor-ip-value></b></span>
+  <span class="nv-seg nv-visitor-city">City: <b data-visitor-ip-city></b></span>
+  <span class="nv-seg nv-visitor-note" title="City is approximate (often the ISP metro, not a street). Shown only to you. Not stored by this site.">approx. city · not stored</span>
+</span>
 
 <script>
   const root = document.querySelector<HTMLElement>('[data-visitor-ip]');
-  const valueEl = document.querySelector<HTMLElement>('[data-visitor-ip-value]');
+  const ipEl = document.querySelector<HTMLElement>('[data-visitor-ip-value]');
+  const cityEl = document.querySelector<HTMLElement>('[data-visitor-ip-city]');
 
   const isIp = (value: string) => {
     if (!value || value.length > 45) return false;
@@ -17,19 +19,26 @@
     return (value.match(/::/g) ?? []).length <= 1;
   };
 
-  if (root && valueEl) {
+  const cityName = (value: unknown) => {
+    if (typeof value !== 'string') return '';
+    const city = value.trim().replace(/[\u0000-\u001F\u007F]/g, '');
+    return city.length > 0 && city.length <= 80 ? city : '';
+  };
+
+  if (root && ipEl && cityEl) {
     const ctrl = new AbortController();
     const timer = window.setTimeout(() => ctrl.abort(), 5000);
-    fetch('https://api64.ipify.org?format=json', {
+    fetch('https://get.geojs.io/v1/ip/geo.json', {
       signal: ctrl.signal,
       credentials: 'omit',
       cache: 'no-store',
     })
       .then((response) => (response.ok ? response.json() : Promise.reject()))
-      .then((data: { ip?: unknown }) => {
+      .then((data: { ip?: unknown; city?: unknown }) => {
         const ip = typeof data?.ip === 'string' ? data.ip.trim() : '';
         if (!isIp(ip)) return;
-        valueEl.textContent = ip;
+        ipEl.textContent = ip;
+        cityEl.textContent = cityName(data?.city) || 'unavailable';
         root.hidden = false;
       })
       .catch(() => {})
