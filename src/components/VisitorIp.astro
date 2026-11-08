@@ -2,9 +2,16 @@
 ---
 <span class="nv-visitor" hidden data-visitor-ip>
   <span class="nv-seg nv-visitor-line">
-    <span class="nv-visitor-ip-row">IP:<b class="nv-visitor-ip" data-visitor-ip-value></b></span>
-    <span class="nv-visitor-sep" aria-hidden="true">•</span>
-    <span class="nv-visitor-city" data-visitor-ip-city></span>
+    <span class="nv-visitor-chip">
+      <span class="nv-visitor-dot" aria-hidden="true"></span>
+      <span class="nv-visitor-k">ip</span>
+      <b class="nv-visitor-ip" data-visitor-ip-value></b>
+      <span class="nv-visitor-sep" aria-hidden="true" data-visitor-ip-city-part></span>
+      <span class="nv-visitor-city" data-visitor-ip-city-part>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1.25A4.9 4.9 0 0 0 3.1 6.15c0 3.55 4.9 8.6 4.9 8.6s4.9-5.05 4.9-8.6A4.9 4.9 0 0 0 8 1.25Zm0 6.85a1.95 1.95 0 1 1 0-3.9 1.95 1.95 0 0 1 0 3.9Z" /></svg>
+        <span class="nv-visitor-city-name" data-visitor-ip-city></span>
+      </span>
+    </span>
   </span>
 </span>
 
@@ -78,12 +85,12 @@
     lookup().then((geo) => {
       if (!geo) return;
       ipEl.textContent = shortenIp(geo.ip);
-      cityEl.textContent = geo.city || 'Unknown';
-      lineEl.title = geo.ip;
-      root.hidden = false;
-      document.querySelectorAll<HTMLElement>('.nv-encoding, .nv-fill').forEach((el) => {
-        el.hidden = true;
+      cityEl.textContent = geo.city;
+      root.querySelectorAll<HTMLElement>('[data-visitor-ip-city-part]').forEach((el) => {
+        el.hidden = !geo.city;
       });
+      lineEl.title = geo.city ? `${geo.ip} · ${geo.city}` : geo.ip;
+      root.hidden = false;
     });
   }
 </script>

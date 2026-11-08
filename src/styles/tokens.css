@@ -149,6 +149,8 @@ html[data-theme='peachpuff'] {
   --mode-bg: #c00058;
   --mode-fg: #ffffff;
   --status-accent: #ffaf87; /* Pmenu */
+  --status-ip: #ffaf87;
+  --status-city: #ffdab9;
   --pop-shadow: 0 10px 24px -14px rgb(120 60 20 / 0.5);
   --selection: #cccccc;     /* Visual */
   --hero-art-opacity: .5;
