@@ -2,8 +2,7 @@
 ---
 <span class="nv-visitor" hidden data-visitor-ip>
   <span class="nv-seg nv-visitor-ip">Your IP: <b data-visitor-ip-value></b></span>
-  <span class="nv-seg nv-visitor-city">City: <b data-visitor-ip-city></b></span>
-  <span class="nv-seg nv-visitor-note">approx. city · not stored</span>
+  <span class="nv-seg nv-visitor-city" title="Approximate city (often the ISP metro, not a street). Shown only to you. Not stored by this site.">City: <b data-visitor-ip-city></b></span>
 </span>
 
 <script>
@@ -23,6 +22,13 @@
     if (typeof value !== 'string') return '';
     const city = value.trim().replace(/[\u0000-\u001F\u007F]/g, '');
     return city.length > 0 && city.length <= 80 ? city : '';
+  };
+
+  const shortenIp = (ip: string) => {
+    if (!ip.includes(':')) return ip;
+    const parts = ip.split(':');
+    if (ip.length <= 22 || parts.length < 5) return ip;
+    return `${parts.slice(0, 3).join(':')}…:${parts.slice(-2).join(':')}`;
   };
 
   type Geo = { ip: string; city: string };
@@ -67,9 +73,13 @@
   if (root && ipEl && cityEl) {
     lookup().then((geo) => {
       if (!geo) return;
-      ipEl.textContent = geo.ip;
+      ipEl.textContent = shortenIp(geo.ip);
+      ipEl.title = geo.ip;
       cityEl.textContent = geo.city || 'unavailable';
       root.hidden = false;
+      document.querySelectorAll<HTMLElement>('.nv-encoding').forEach((el) => {
+        el.hidden = true;
+      });
     });
   }
 </script>
