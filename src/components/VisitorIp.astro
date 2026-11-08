@@ -81,7 +81,7 @@
       cityEl.textContent = geo.city || 'Unknown';
       lineEl.title = geo.ip;
       root.hidden = false;
-      document.querySelectorAll<HTMLElement>('.nv-encoding').forEach((el) => {
+      document.querySelectorAll<HTMLElement>('.nv-encoding, .nv-fill').forEach((el) => {
         el.hidden = true;
       });
     });

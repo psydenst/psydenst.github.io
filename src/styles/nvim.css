@@ -27,10 +27,14 @@
 .nv-pos { color: var(--status-accent); font-weight: 600; min-width: 4.5rem; justify-content: center; }
 @media (max-width: 640px) { .nv-branch, .nv-meta { display: none; } .nv-file { max-width: 50vw; } }
 
-/* visitor IP + city: tiny centered three-line easter egg in the right-hand slot */
+/* visitor IP + city: one bar, stack centered in the remaining width */
 .nv-visitor { display: contents; }
 .nv-visitor[hidden] { display: none; }
 .nv-visitor-line {
+  flex: 1;
+  min-width: 0;
+  border-left: 0;
+  background: transparent;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -40,7 +44,7 @@
   line-height: 1.05;
   letter-spacing: .02em;
   color: var(--status-fg);
-  padding: .15rem .5rem;
+  padding: .15rem .4rem;
 }
 .nv-visitor-ip-row,
 .nv-visitor-sep,
